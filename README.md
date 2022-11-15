@@ -50,6 +50,7 @@ deactivate
 ```
 supervisorctl status
 supervisorctl start flask_server
+supervisorctl start streamBinanceSpot
 supervisorctl start monitoring
 supervisorctl status
 ```
