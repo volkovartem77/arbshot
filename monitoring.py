@@ -38,10 +38,10 @@ class Monitoring(Calculation, Trading):
 
             # Execute Best
             if best:
-                log(f"NEW ARBITRAGE {best[2]}%", GENERAL_LOG, best[0], to_mem=True)
-                log(f"GetSpreadSpeed={self.GetSpreadSpeed} CalcSpreadSpeed={self.CalcSpreadSpeed}",
-                    GENERAL_LOG, 'INFO', to_mem=True)
+                log(f"NEW ARBITRAGE {'{:.4f}'.format(best[2])}%", GENERAL_LOG, best[0], to_mem=True)
                 if self.Params.Trading:
+                    log(f"GetSpreadSpeed={self.GetSpreadSpeed} CalcSpreadSpeed={self.CalcSpreadSpeed}",
+                        GENERAL_LOG, 'INFO', to_mem=True)
                     self.execute(best)
 
 
