@@ -1,5 +1,3 @@
-from decimal import Decimal
-
 import simplejson
 from pymemcache.client.base import Client
 
@@ -8,14 +6,14 @@ SUPERVISOR_PATH = '/etc/supervisor/conf.d/'
 
 
 def get_symbols():
-    ff = open('symbols.json', "r")
+    ff = open(PROJECT_PATH + 'symbols.json', "r")
     result = simplejson.loads(ff.read())
     ff.close()
     return result
 
 
 def get_symbols_info():
-    ff = open('symbols_info.json', "r")
+    ff = open(PROJECT_PATH + 'symbols_info.json', "r")
     result = simplejson.loads(ff.read())
     result = format_symbols_info(result)
     ff.close()
