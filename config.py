@@ -57,7 +57,7 @@ TOKENS_BTC = [s['base'] for s in get_symbols()['symbols'] if s['quote'] == 'BTC'
 TOKENS = sorted(list(set([s['base'] for s in get_symbols()['symbols'] if s['base'] in TOKENS_BTC])))
 
 # Logging
-LOG_PATH = 'log'
+LOG_PATH = PROJECT_PATH + 'log'
 GENERAL_LOG = 'general'
 STREAM_LOG = 'stream'
 
