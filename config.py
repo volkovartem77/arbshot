@@ -23,8 +23,8 @@ def get_symbols_info():
 
 
 def get_preferences():
-    # ff = open(PROJECT_PATH + 'preferences.json', "r")
-    ff = open(PROJECT_PATH + 'test_preferences.json', "r")  # TEST
+    ff = open(PROJECT_PATH + 'preferences.json', "r")
+    # ff = open(PROJECT_PATH + 'test_preferences.json', "r")  # TEST
     preferences = simplejson.loads(ff.read())
     ff.close()
     return preferences
