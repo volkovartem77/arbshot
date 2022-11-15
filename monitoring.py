@@ -5,7 +5,7 @@ from calculation import Calculation
 from config import GENERAL_LOG, SYMBOLS_LOWER
 from models import Params
 from trading import Trading
-from utils import log, mem_get_spread, time_diff_ms, mem_get_settings
+from utils import log, mem_get_spread, time_diff_ms, mem_get_settings, mem_set_log
 from utils_arb import create_structure
 
 
@@ -20,6 +20,9 @@ class Monitoring(Calculation, Trading):
         self.CalcSpreadSpeed = None
 
     def run(self):
+        # Clear Log
+        mem_set_log(GENERAL_LOG, [])
+
         # Create structure
         structure = create_structure()
 
