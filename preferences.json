@@ -1,0 +1,18 @@
+{
+  "default_settings": {
+    "api_key": "fFXUKcEHPPB0OyfD1rmqjy8JY7aMLM05I3tiEFLius9F6pN62qkotZC2FlX30NO3",
+    "api_secret": "UM19eQXyA3pTzMIifZk3V0uLAXOQDPoug7ZRB1coMiGLApLwYbjF93LCB0KwwIAr",
+    "taker_fee": 0.1,
+    "min_difference": 0,
+    "order_amount_prc": 90,
+    "forward": true,
+    "backward": true,
+    "trading": false
+  },
+  "filter_profit_usdt": 0,
+  "filter_min_amount_usdt": 15,
+  "mem_log_length": 1000,
+  "log_size_mb": 1,
+  "print_log": false,
+  "test_mode": false
+}

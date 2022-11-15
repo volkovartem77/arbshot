@@ -1,0 +1,4458 @@
+{
+  "1inchbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "1INCH",
+    "quote": "BTC"
+  },
+  "1inchusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "1INCH",
+    "quote": "USDT"
+  },
+  "aavebtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "AAVE",
+    "quote": "BTC"
+  },
+  "aaveusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "AAVE",
+    "quote": "USDT"
+  },
+  "acabtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ACA",
+    "quote": "BTC"
+  },
+  "acausdt": {
+    "price_precision": 4,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ACA",
+    "quote": "USDT"
+  },
+  "achbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ACH",
+    "quote": "BTC"
+  },
+  "achusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "ACH",
+    "quote": "USDT"
+  },
+  "acmbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "ACM",
+    "quote": "BTC"
+  },
+  "acmusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "ACM",
+    "quote": "USDT"
+  },
+  "adabtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ADA",
+    "quote": "BTC"
+  },
+  "adausdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ADA",
+    "quote": "USDT"
+  },
+  "adxbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ADX",
+    "quote": "BTC"
+  },
+  "adxusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ADX",
+    "quote": "USDT"
+  },
+  "agldbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "AGLD",
+    "quote": "BTC"
+  },
+  "agldusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "AGLD",
+    "quote": "USDT"
+  },
+  "aionbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "AION",
+    "quote": "BTC"
+  },
+  "aionusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "AION",
+    "quote": "USDT"
+  },
+  "alcxbtc": {
+    "price_precision": 6,
+    "amount_precision": 4,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "ALCX",
+    "quote": "BTC"
+  },
+  "alcxusdt": {
+    "price_precision": 1,
+    "amount_precision": 4,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "ALCX",
+    "quote": "USDT"
+  },
+  "algobtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ALGO",
+    "quote": "BTC"
+  },
+  "algousdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ALGO",
+    "quote": "USDT"
+  },
+  "alicebtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "ALICE",
+    "quote": "BTC"
+  },
+  "aliceusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "ALICE",
+    "quote": "USDT"
+  },
+  "alpacabtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ALPACA",
+    "quote": "BTC"
+  },
+  "alpacausdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ALPACA",
+    "quote": "USDT"
+  },
+  "alphabtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ALPHA",
+    "quote": "BTC"
+  },
+  "alphausdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ALPHA",
+    "quote": "USDT"
+  },
+  "alpinebtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ALPINE",
+    "quote": "BTC"
+  },
+  "alpineusdt": {
+    "price_precision": 4,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ALPINE",
+    "quote": "USDT"
+  },
+  "ampbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "AMP",
+    "quote": "BTC"
+  },
+  "ampusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "AMP",
+    "quote": "USDT"
+  },
+  "ancbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ANC",
+    "quote": "BTC"
+  },
+  "ancusdt": {
+    "price_precision": 5,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "ANC",
+    "quote": "USDT"
+  },
+  "ankrbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ANKR",
+    "quote": "BTC"
+  },
+  "ankrusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "ANKR",
+    "quote": "USDT"
+  },
+  "antbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ANT",
+    "quote": "BTC"
+  },
+  "antusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "ANT",
+    "quote": "USDT"
+  },
+  "apebtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "APE",
+    "quote": "BTC"
+  },
+  "apeusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "APE",
+    "quote": "USDT"
+  },
+  "api3btc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "API3",
+    "quote": "BTC"
+  },
+  "api3usdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "API3",
+    "quote": "USDT"
+  },
+  "aptbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "APT",
+    "quote": "BTC"
+  },
+  "aptusdt": {
+    "price_precision": 4,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "APT",
+    "quote": "USDT"
+  },
+  "arbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "AR",
+    "quote": "BTC"
+  },
+  "ardrbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ARDR",
+    "quote": "BTC"
+  },
+  "ardrusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ARDR",
+    "quote": "USDT"
+  },
+  "arpabtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ARPA",
+    "quote": "BTC"
+  },
+  "arpausdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "ARPA",
+    "quote": "USDT"
+  },
+  "arusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "AR",
+    "quote": "USDT"
+  },
+  "asrbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "ASR",
+    "quote": "BTC"
+  },
+  "asrusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "ASR",
+    "quote": "USDT"
+  },
+  "astrbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ASTR",
+    "quote": "BTC"
+  },
+  "astrusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ASTR",
+    "quote": "USDT"
+  },
+  "atabtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ATA",
+    "quote": "BTC"
+  },
+  "atausdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ATA",
+    "quote": "USDT"
+  },
+  "atmbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "ATM",
+    "quote": "BTC"
+  },
+  "atmusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "ATM",
+    "quote": "USDT"
+  },
+  "atombtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "ATOM",
+    "quote": "BTC"
+  },
+  "atomusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "ATOM",
+    "quote": "USDT"
+  },
+  "auctionbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "AUCTION",
+    "quote": "BTC"
+  },
+  "auctionusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "AUCTION",
+    "quote": "USDT"
+  },
+  "audiobtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "AUDIO",
+    "quote": "BTC"
+  },
+  "audiousdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "AUDIO",
+    "quote": "USDT"
+  },
+  "autobtc": {
+    "price_precision": 5,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00001000",
+    "base": "AUTO",
+    "quote": "BTC"
+  },
+  "autousdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "AUTO",
+    "quote": "USDT"
+  },
+  "avabtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "AVA",
+    "quote": "BTC"
+  },
+  "avausdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "AVA",
+    "quote": "USDT"
+  },
+  "avaxbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "AVAX",
+    "quote": "BTC"
+  },
+  "avaxusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "AVAX",
+    "quote": "USDT"
+  },
+  "axsbtc": {
+    "price_precision": 6,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "AXS",
+    "quote": "BTC"
+  },
+  "axsusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "AXS",
+    "quote": "USDT"
+  },
+  "badgerbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "BADGER",
+    "quote": "BTC"
+  },
+  "badgerusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "BADGER",
+    "quote": "USDT"
+  },
+  "bakebtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "BAKE",
+    "quote": "BTC"
+  },
+  "bakeusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "BAKE",
+    "quote": "USDT"
+  },
+  "balbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "BAL",
+    "quote": "BTC"
+  },
+  "balusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "BAL",
+    "quote": "USDT"
+  },
+  "bandbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "BAND",
+    "quote": "BTC"
+  },
+  "bandusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "BAND",
+    "quote": "USDT"
+  },
+  "barbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "BAR",
+    "quote": "BTC"
+  },
+  "barusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "BAR",
+    "quote": "USDT"
+  },
+  "batbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "BAT",
+    "quote": "BTC"
+  },
+  "batusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "BAT",
+    "quote": "USDT"
+  },
+  "bchbtc": {
+    "price_precision": 5,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00001000",
+    "base": "BCH",
+    "quote": "BTC"
+  },
+  "bchusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "BCH",
+    "quote": "USDT"
+  },
+  "beambtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "BEAM",
+    "quote": "BTC"
+  },
+  "beamusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "BEAM",
+    "quote": "USDT"
+  },
+  "belbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "BEL",
+    "quote": "BTC"
+  },
+  "belusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "BEL",
+    "quote": "USDT"
+  },
+  "betabtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "BETA",
+    "quote": "BTC"
+  },
+  "betausdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "BETA",
+    "quote": "USDT"
+  },
+  "bicobtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "BICO",
+    "quote": "BTC"
+  },
+  "bicousdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "BICO",
+    "quote": "USDT"
+  },
+  "blzbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "BLZ",
+    "quote": "BTC"
+  },
+  "blzusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "BLZ",
+    "quote": "USDT"
+  },
+  "bnbbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "BNB",
+    "quote": "BTC"
+  },
+  "bnbusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "BNB",
+    "quote": "USDT"
+  },
+  "bntbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "BNT",
+    "quote": "BTC"
+  },
+  "bntusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "BNT",
+    "quote": "USDT"
+  },
+  "bnxbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "BNX",
+    "quote": "BTC"
+  },
+  "bnxusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "BNX",
+    "quote": "USDT"
+  },
+  "bondbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "BOND",
+    "quote": "BTC"
+  },
+  "bondusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "BOND",
+    "quote": "USDT"
+  },
+  "btcstbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "BTCST",
+    "quote": "BTC"
+  },
+  "btcstusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "BTCST",
+    "quote": "USDT"
+  },
+  "btcusdt": {
+    "price_precision": 2,
+    "amount_precision": 5,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "BTC",
+    "quote": "USDT"
+  },
+  "btgbtc": {
+    "price_precision": 6,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "BTG",
+    "quote": "BTC"
+  },
+  "btgusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "BTG",
+    "quote": "USDT"
+  },
+  "btsbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "BTS",
+    "quote": "BTC"
+  },
+  "btsusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "BTS",
+    "quote": "USDT"
+  },
+  "c98btc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "C98",
+    "quote": "BTC"
+  },
+  "c98usdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "C98",
+    "quote": "USDT"
+  },
+  "cakebtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "CAKE",
+    "quote": "BTC"
+  },
+  "cakeusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "CAKE",
+    "quote": "USDT"
+  },
+  "celobtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CELO",
+    "quote": "BTC"
+  },
+  "celousdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "CELO",
+    "quote": "USDT"
+  },
+  "celrbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CELR",
+    "quote": "BTC"
+  },
+  "celrusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "CELR",
+    "quote": "USDT"
+  },
+  "cfxbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CFX",
+    "quote": "BTC"
+  },
+  "cfxusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "CFX",
+    "quote": "USDT"
+  },
+  "chessbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CHESS",
+    "quote": "BTC"
+  },
+  "chessusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "CHESS",
+    "quote": "USDT"
+  },
+  "chrbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CHR",
+    "quote": "BTC"
+  },
+  "chrusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "CHR",
+    "quote": "USDT"
+  },
+  "chzbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CHZ",
+    "quote": "BTC"
+  },
+  "chzusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "CHZ",
+    "quote": "USDT"
+  },
+  "citybtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "CITY",
+    "quote": "BTC"
+  },
+  "cityusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "CITY",
+    "quote": "USDT"
+  },
+  "clvbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CLV",
+    "quote": "BTC"
+  },
+  "clvusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "CLV",
+    "quote": "USDT"
+  },
+  "compbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "COMP",
+    "quote": "BTC"
+  },
+  "compusdt": {
+    "price_precision": 2,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "COMP",
+    "quote": "USDT"
+  },
+  "cosbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "COS",
+    "quote": "BTC"
+  },
+  "cosusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "COS",
+    "quote": "USDT"
+  },
+  "cotibtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "COTI",
+    "quote": "BTC"
+  },
+  "cotiusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "COTI",
+    "quote": "USDT"
+  },
+  "crvbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CRV",
+    "quote": "BTC"
+  },
+  "crvusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "CRV",
+    "quote": "USDT"
+  },
+  "ctkbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CTK",
+    "quote": "BTC"
+  },
+  "ctkusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "CTK",
+    "quote": "USDT"
+  },
+  "ctsibtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CTSI",
+    "quote": "BTC"
+  },
+  "ctsiusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "CTSI",
+    "quote": "USDT"
+  },
+  "ctxcbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CTXC",
+    "quote": "BTC"
+  },
+  "ctxcusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "CTXC",
+    "quote": "USDT"
+  },
+  "cvcbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "CVC",
+    "quote": "BTC"
+  },
+  "cvcusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "CVC",
+    "quote": "USDT"
+  },
+  "cvxbtc": {
+    "price_precision": 7,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "CVX",
+    "quote": "BTC"
+  },
+  "cvxusdt": {
+    "price_precision": 3,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "CVX",
+    "quote": "USDT"
+  },
+  "darbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DAR",
+    "quote": "BTC"
+  },
+  "darusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "DAR",
+    "quote": "USDT"
+  },
+  "dashbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "DASH",
+    "quote": "BTC"
+  },
+  "dashusdt": {
+    "price_precision": 2,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "DASH",
+    "quote": "USDT"
+  },
+  "databtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DATA",
+    "quote": "BTC"
+  },
+  "datausdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "DATA",
+    "quote": "USDT"
+  },
+  "dcrbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "DCR",
+    "quote": "BTC"
+  },
+  "dcrusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "DCR",
+    "quote": "USDT"
+  },
+  "degobtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DEGO",
+    "quote": "BTC"
+  },
+  "degousdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "DEGO",
+    "quote": "USDT"
+  },
+  "dgbbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DGB",
+    "quote": "BTC"
+  },
+  "dgbusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "DGB",
+    "quote": "USDT"
+  },
+  "diabtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DIA",
+    "quote": "BTC"
+  },
+  "diausdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "DIA",
+    "quote": "USDT"
+  },
+  "dntbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DNT",
+    "quote": "BTC"
+  },
+  "dntusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "DNT",
+    "quote": "USDT"
+  },
+  "dockbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DOCK",
+    "quote": "BTC"
+  },
+  "dockusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "DOCK",
+    "quote": "USDT"
+  },
+  "dodobtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DODO",
+    "quote": "BTC"
+  },
+  "dodousdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "DODO",
+    "quote": "USDT"
+  },
+  "dogebtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DOGE",
+    "quote": "BTC"
+  },
+  "dogeusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "DOGE",
+    "quote": "USDT"
+  },
+  "dotbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "DOT",
+    "quote": "BTC"
+  },
+  "dotusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "DOT",
+    "quote": "USDT"
+  },
+  "drepbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DREP",
+    "quote": "BTC"
+  },
+  "drepusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "DREP",
+    "quote": "USDT"
+  },
+  "duskbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DUSK",
+    "quote": "BTC"
+  },
+  "duskusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "DUSK",
+    "quote": "USDT"
+  },
+  "dydxbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "DYDX",
+    "quote": "BTC"
+  },
+  "dydxusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "DYDX",
+    "quote": "USDT"
+  },
+  "egldbtc": {
+    "price_precision": 6,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "EGLD",
+    "quote": "BTC"
+  },
+  "egldusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "EGLD",
+    "quote": "USDT"
+  },
+  "elfbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ELF",
+    "quote": "BTC"
+  },
+  "elfusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ELF",
+    "quote": "USDT"
+  },
+  "enjbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ENJ",
+    "quote": "BTC"
+  },
+  "enjusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ENJ",
+    "quote": "USDT"
+  },
+  "ensbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "ENS",
+    "quote": "BTC"
+  },
+  "ensusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "ENS",
+    "quote": "USDT"
+  },
+  "eosbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "EOS",
+    "quote": "BTC"
+  },
+  "eosusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "EOS",
+    "quote": "USDT"
+  },
+  "etcbtc": {
+    "price_precision": 6,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "ETC",
+    "quote": "BTC"
+  },
+  "etcusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "ETC",
+    "quote": "USDT"
+  },
+  "ethbtc": {
+    "price_precision": 6,
+    "amount_precision": 4,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "ETH",
+    "quote": "BTC"
+  },
+  "ethusdt": {
+    "price_precision": 2,
+    "amount_precision": 4,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "ETH",
+    "quote": "USDT"
+  },
+  "farmbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "FARM",
+    "quote": "BTC"
+  },
+  "farmusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "FARM",
+    "quote": "USDT"
+  },
+  "fetbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FET",
+    "quote": "BTC"
+  },
+  "fetusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "FET",
+    "quote": "USDT"
+  },
+  "fidabtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FIDA",
+    "quote": "BTC"
+  },
+  "fidausdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "FIDA",
+    "quote": "USDT"
+  },
+  "filbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "FIL",
+    "quote": "BTC"
+  },
+  "filusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "FIL",
+    "quote": "USDT"
+  },
+  "fiobtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FIO",
+    "quote": "BTC"
+  },
+  "fiousdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "FIO",
+    "quote": "USDT"
+  },
+  "firobtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "FIRO",
+    "quote": "BTC"
+  },
+  "firousdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "FIRO",
+    "quote": "USDT"
+  },
+  "fisbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FIS",
+    "quote": "BTC"
+  },
+  "fisusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "FIS",
+    "quote": "USDT"
+  },
+  "flmbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FLM",
+    "quote": "BTC"
+  },
+  "flmusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "FLM",
+    "quote": "USDT"
+  },
+  "flowbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FLOW",
+    "quote": "BTC"
+  },
+  "flowusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "FLOW",
+    "quote": "USDT"
+  },
+  "fluxbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FLUX",
+    "quote": "BTC"
+  },
+  "fluxusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "FLUX",
+    "quote": "USDT"
+  },
+  "forbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FOR",
+    "quote": "BTC"
+  },
+  "forthbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "FORTH",
+    "quote": "BTC"
+  },
+  "forthusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "FORTH",
+    "quote": "USDT"
+  },
+  "forusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "FOR",
+    "quote": "USDT"
+  },
+  "frontbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FRONT",
+    "quote": "BTC"
+  },
+  "frontusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "FRONT",
+    "quote": "USDT"
+  },
+  "ftmbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FTM",
+    "quote": "BTC"
+  },
+  "ftmusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "FTM",
+    "quote": "USDT"
+  },
+  "fttbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "FTT",
+    "quote": "BTC"
+  },
+  "fttusdt": {
+    "price_precision": 4,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "FTT",
+    "quote": "USDT"
+  },
+  "fxsbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "FXS",
+    "quote": "BTC"
+  },
+  "fxsusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "FXS",
+    "quote": "USDT"
+  },
+  "galabtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "GALA",
+    "quote": "BTC"
+  },
+  "galausdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "GALA",
+    "quote": "USDT"
+  },
+  "galbtc": {
+    "price_precision": 8,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "GAL",
+    "quote": "BTC"
+  },
+  "galusdt": {
+    "price_precision": 3,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "GAL",
+    "quote": "USDT"
+  },
+  "glmrbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "GLMR",
+    "quote": "BTC"
+  },
+  "glmrusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "GLMR",
+    "quote": "USDT"
+  },
+  "gmtbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "GMT",
+    "quote": "BTC"
+  },
+  "gmtusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "GMT",
+    "quote": "USDT"
+  },
+  "gmxbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "GMX",
+    "quote": "BTC"
+  },
+  "gmxusdt": {
+    "price_precision": 2,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "GMX",
+    "quote": "USDT"
+  },
+  "grtbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "GRT",
+    "quote": "BTC"
+  },
+  "grtusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "GRT",
+    "quote": "USDT"
+  },
+  "gtcbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "GTC",
+    "quote": "BTC"
+  },
+  "gtcusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "GTC",
+    "quote": "USDT"
+  },
+  "gtobtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "GTO",
+    "quote": "BTC"
+  },
+  "gtousdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "GTO",
+    "quote": "USDT"
+  },
+  "hardbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "HARD",
+    "quote": "BTC"
+  },
+  "hardusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "HARD",
+    "quote": "USDT"
+  },
+  "hbarbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "HBAR",
+    "quote": "BTC"
+  },
+  "hbarusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "HBAR",
+    "quote": "USDT"
+  },
+  "highbtc": {
+    "price_precision": 8,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "HIGH",
+    "quote": "BTC"
+  },
+  "highusdt": {
+    "price_precision": 3,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "HIGH",
+    "quote": "USDT"
+  },
+  "hivebtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "HIVE",
+    "quote": "BTC"
+  },
+  "hiveusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "HIVE",
+    "quote": "USDT"
+  },
+  "icpbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "ICP",
+    "quote": "BTC"
+  },
+  "icpusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "ICP",
+    "quote": "USDT"
+  },
+  "icxbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ICX",
+    "quote": "BTC"
+  },
+  "icxusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ICX",
+    "quote": "USDT"
+  },
+  "idexbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "IDEX",
+    "quote": "BTC"
+  },
+  "idexusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "IDEX",
+    "quote": "USDT"
+  },
+  "ilvbtc": {
+    "price_precision": 5,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00001000",
+    "base": "ILV",
+    "quote": "BTC"
+  },
+  "ilvusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "ILV",
+    "quote": "USDT"
+  },
+  "imxbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "IMX",
+    "quote": "BTC"
+  },
+  "imxusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "IMX",
+    "quote": "USDT"
+  },
+  "injbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "INJ",
+    "quote": "BTC"
+  },
+  "injusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "INJ",
+    "quote": "USDT"
+  },
+  "iostbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "IOST",
+    "quote": "BTC"
+  },
+  "iostusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "IOST",
+    "quote": "USDT"
+  },
+  "iotabtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "IOTA",
+    "quote": "BTC"
+  },
+  "iotausdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "IOTA",
+    "quote": "USDT"
+  },
+  "iotxbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "IOTX",
+    "quote": "BTC"
+  },
+  "iotxusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "IOTX",
+    "quote": "USDT"
+  },
+  "irisbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "IRIS",
+    "quote": "BTC"
+  },
+  "irisusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "IRIS",
+    "quote": "USDT"
+  },
+  "jasmybtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "JASMY",
+    "quote": "BTC"
+  },
+  "jasmyusdt": {
+    "price_precision": 6,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00000100",
+    "base": "JASMY",
+    "quote": "USDT"
+  },
+  "joebtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "JOE",
+    "quote": "BTC"
+  },
+  "joeusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "JOE",
+    "quote": "USDT"
+  },
+  "jstbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "JST",
+    "quote": "BTC"
+  },
+  "jstusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "JST",
+    "quote": "USDT"
+  },
+  "juvbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "JUV",
+    "quote": "BTC"
+  },
+  "juvusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "JUV",
+    "quote": "USDT"
+  },
+  "kavabtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "KAVA",
+    "quote": "BTC"
+  },
+  "kavausdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "KAVA",
+    "quote": "USDT"
+  },
+  "kdabtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "KDA",
+    "quote": "BTC"
+  },
+  "kdausdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "KDA",
+    "quote": "USDT"
+  },
+  "klaybtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "KLAY",
+    "quote": "BTC"
+  },
+  "klayusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "KLAY",
+    "quote": "USDT"
+  },
+  "kmdbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "KMD",
+    "quote": "BTC"
+  },
+  "kmdusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "KMD",
+    "quote": "USDT"
+  },
+  "kncbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "KNC",
+    "quote": "BTC"
+  },
+  "kncusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "KNC",
+    "quote": "USDT"
+  },
+  "ksmbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "KSM",
+    "quote": "BTC"
+  },
+  "ksmusdt": {
+    "price_precision": 2,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "KSM",
+    "quote": "USDT"
+  },
+  "laziobtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "LAZIO",
+    "quote": "BTC"
+  },
+  "laziousdt": {
+    "price_precision": 4,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "LAZIO",
+    "quote": "USDT"
+  },
+  "ldobtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "LDO",
+    "quote": "BTC"
+  },
+  "ldousdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "LDO",
+    "quote": "USDT"
+  },
+  "linabtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "LINA",
+    "quote": "BTC"
+  },
+  "linausdt": {
+    "price_precision": 5,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "LINA",
+    "quote": "USDT"
+  },
+  "linkbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "LINK",
+    "quote": "BTC"
+  },
+  "linkusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "LINK",
+    "quote": "USDT"
+  },
+  "litbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "LIT",
+    "quote": "BTC"
+  },
+  "litusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "LIT",
+    "quote": "USDT"
+  },
+  "lokabtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "LOKA",
+    "quote": "BTC"
+  },
+  "lokausdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "LOKA",
+    "quote": "USDT"
+  },
+  "lptbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "LPT",
+    "quote": "BTC"
+  },
+  "lptusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "LPT",
+    "quote": "USDT"
+  },
+  "lrcbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "LRC",
+    "quote": "BTC"
+  },
+  "lrcusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "LRC",
+    "quote": "USDT"
+  },
+  "lskbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "LSK",
+    "quote": "BTC"
+  },
+  "lskusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "LSK",
+    "quote": "USDT"
+  },
+  "ltcbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "LTC",
+    "quote": "BTC"
+  },
+  "ltcusdt": {
+    "price_precision": 2,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "LTC",
+    "quote": "USDT"
+  },
+  "ltobtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "LTO",
+    "quote": "BTC"
+  },
+  "ltousdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "LTO",
+    "quote": "USDT"
+  },
+  "manabtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MANA",
+    "quote": "BTC"
+  },
+  "manausdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "MANA",
+    "quote": "USDT"
+  },
+  "maticbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MATIC",
+    "quote": "BTC"
+  },
+  "maticusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "MATIC",
+    "quote": "USDT"
+  },
+  "mboxbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MBOX",
+    "quote": "BTC"
+  },
+  "mboxusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "MBOX",
+    "quote": "USDT"
+  },
+  "mcbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MC",
+    "quote": "BTC"
+  },
+  "mcusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "MC",
+    "quote": "USDT"
+  },
+  "mdtbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MDT",
+    "quote": "BTC"
+  },
+  "mdtusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "MDT",
+    "quote": "USDT"
+  },
+  "mdxbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MDX",
+    "quote": "BTC"
+  },
+  "mdxusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "MDX",
+    "quote": "USDT"
+  },
+  "minabtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MINA",
+    "quote": "BTC"
+  },
+  "minausdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "MINA",
+    "quote": "USDT"
+  },
+  "mirbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MIR",
+    "quote": "BTC"
+  },
+  "mirusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "MIR",
+    "quote": "USDT"
+  },
+  "mithbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MITH",
+    "quote": "BTC"
+  },
+  "mithusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "MITH",
+    "quote": "USDT"
+  },
+  "mkrbtc": {
+    "price_precision": 5,
+    "amount_precision": 4,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00001000",
+    "base": "MKR",
+    "quote": "BTC"
+  },
+  "mkrusdt": {
+    "price_precision": 0,
+    "amount_precision": 4,
+    "min_amount": "10.00000000",
+    "tick_size": "1.00000000",
+    "base": "MKR",
+    "quote": "USDT"
+  },
+  "mlnbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "MLN",
+    "quote": "BTC"
+  },
+  "mlnusdt": {
+    "price_precision": 2,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "MLN",
+    "quote": "USDT"
+  },
+  "mobbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MOB",
+    "quote": "BTC"
+  },
+  "mobusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "MOB",
+    "quote": "USDT"
+  },
+  "movrbtc": {
+    "price_precision": 7,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "MOVR",
+    "quote": "BTC"
+  },
+  "movrusdt": {
+    "price_precision": 2,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "MOVR",
+    "quote": "USDT"
+  },
+  "mtlbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "MTL",
+    "quote": "BTC"
+  },
+  "mtlusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "MTL",
+    "quote": "USDT"
+  },
+  "multibtc": {
+    "price_precision": 7,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "MULTI",
+    "quote": "BTC"
+  },
+  "multiusdt": {
+    "price_precision": 2,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "MULTI",
+    "quote": "USDT"
+  },
+  "nearbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "NEAR",
+    "quote": "BTC"
+  },
+  "nearusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "NEAR",
+    "quote": "USDT"
+  },
+  "neblbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "NEBL",
+    "quote": "BTC"
+  },
+  "neblusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "NEBL",
+    "quote": "USDT"
+  },
+  "neobtc": {
+    "price_precision": 6,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "NEO",
+    "quote": "BTC"
+  },
+  "neousdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "NEO",
+    "quote": "USDT"
+  },
+  "nexobtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "NEXO",
+    "quote": "BTC"
+  },
+  "nexousdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "NEXO",
+    "quote": "USDT"
+  },
+  "nknbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "NKN",
+    "quote": "BTC"
+  },
+  "nknusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "NKN",
+    "quote": "USDT"
+  },
+  "nmrbtc": {
+    "price_precision": 6,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "NMR",
+    "quote": "BTC"
+  },
+  "nmrusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "NMR",
+    "quote": "USDT"
+  },
+  "nulsbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "NULS",
+    "quote": "BTC"
+  },
+  "nulsusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "NULS",
+    "quote": "USDT"
+  },
+  "oceanbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "OCEAN",
+    "quote": "BTC"
+  },
+  "oceanusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "OCEAN",
+    "quote": "USDT"
+  },
+  "ogbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "OG",
+    "quote": "BTC"
+  },
+  "ognbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "OGN",
+    "quote": "BTC"
+  },
+  "ognusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "OGN",
+    "quote": "USDT"
+  },
+  "ogusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "OG",
+    "quote": "USDT"
+  },
+  "ombtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "OM",
+    "quote": "BTC"
+  },
+  "omgbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "OMG",
+    "quote": "BTC"
+  },
+  "omgusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "OMG",
+    "quote": "USDT"
+  },
+  "omusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "OM",
+    "quote": "USDT"
+  },
+  "onebtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ONE",
+    "quote": "BTC"
+  },
+  "oneusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "ONE",
+    "quote": "USDT"
+  },
+  "ongbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ONG",
+    "quote": "BTC"
+  },
+  "ongusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ONG",
+    "quote": "USDT"
+  },
+  "ontbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ONT",
+    "quote": "BTC"
+  },
+  "ontusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ONT",
+    "quote": "USDT"
+  },
+  "opbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "OP",
+    "quote": "BTC"
+  },
+  "opusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "OP",
+    "quote": "USDT"
+  },
+  "ornbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "ORN",
+    "quote": "BTC"
+  },
+  "ornusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "ORN",
+    "quote": "USDT"
+  },
+  "oxtbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "OXT",
+    "quote": "BTC"
+  },
+  "oxtusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "OXT",
+    "quote": "USDT"
+  },
+  "paxgbtc": {
+    "price_precision": 5,
+    "amount_precision": 4,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00001000",
+    "base": "PAXG",
+    "quote": "BTC"
+  },
+  "paxgusdt": {
+    "price_precision": 0,
+    "amount_precision": 4,
+    "min_amount": "10.00000000",
+    "tick_size": "1.00000000",
+    "base": "PAXG",
+    "quote": "USDT"
+  },
+  "peoplebtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "PEOPLE",
+    "quote": "BTC"
+  },
+  "peopleusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "PEOPLE",
+    "quote": "USDT"
+  },
+  "perlbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "PERL",
+    "quote": "BTC"
+  },
+  "perlusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "PERL",
+    "quote": "USDT"
+  },
+  "perpbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "PERP",
+    "quote": "BTC"
+  },
+  "perpusdt": {
+    "price_precision": 5,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "PERP",
+    "quote": "USDT"
+  },
+  "phabtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "PHA",
+    "quote": "BTC"
+  },
+  "phausdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "PHA",
+    "quote": "USDT"
+  },
+  "plabtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "PLA",
+    "quote": "BTC"
+  },
+  "plausdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "PLA",
+    "quote": "USDT"
+  },
+  "pntbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "PNT",
+    "quote": "BTC"
+  },
+  "pntusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "PNT",
+    "quote": "USDT"
+  },
+  "polsbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "POLS",
+    "quote": "BTC"
+  },
+  "polsusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "POLS",
+    "quote": "USDT"
+  },
+  "polyxbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "POLYX",
+    "quote": "BTC"
+  },
+  "polyxusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "POLYX",
+    "quote": "USDT"
+  },
+  "pondbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "POND",
+    "quote": "BTC"
+  },
+  "pondusdt": {
+    "price_precision": 5,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "POND",
+    "quote": "USDT"
+  },
+  "portobtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "PORTO",
+    "quote": "BTC"
+  },
+  "portousdt": {
+    "price_precision": 4,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "PORTO",
+    "quote": "USDT"
+  },
+  "powrbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "POWR",
+    "quote": "BTC"
+  },
+  "powrusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "POWR",
+    "quote": "USDT"
+  },
+  "psgbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "PSG",
+    "quote": "BTC"
+  },
+  "psgusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "PSG",
+    "quote": "USDT"
+  },
+  "pyrbtc": {
+    "price_precision": 7,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "PYR",
+    "quote": "BTC"
+  },
+  "pyrusdt": {
+    "price_precision": 2,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "PYR",
+    "quote": "USDT"
+  },
+  "qibtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "QI",
+    "quote": "BTC"
+  },
+  "qiusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "QI",
+    "quote": "USDT"
+  },
+  "qntbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "QNT",
+    "quote": "BTC"
+  },
+  "qntusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "QNT",
+    "quote": "USDT"
+  },
+  "qtumbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "QTUM",
+    "quote": "BTC"
+  },
+  "qtumusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "QTUM",
+    "quote": "USDT"
+  },
+  "quickbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "QUICK",
+    "quote": "BTC"
+  },
+  "quickusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "QUICK",
+    "quote": "USDT"
+  },
+  "radbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "RAD",
+    "quote": "BTC"
+  },
+  "radusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "RAD",
+    "quote": "USDT"
+  },
+  "rarebtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "RARE",
+    "quote": "BTC"
+  },
+  "rareusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "RARE",
+    "quote": "USDT"
+  },
+  "renbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "REN",
+    "quote": "BTC"
+  },
+  "renusdt": {
+    "price_precision": 6,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00000100",
+    "base": "REN",
+    "quote": "USDT"
+  },
+  "repbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "REP",
+    "quote": "BTC"
+  },
+  "repusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "REP",
+    "quote": "USDT"
+  },
+  "reqbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "REQ",
+    "quote": "BTC"
+  },
+  "requsdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "REQ",
+    "quote": "USDT"
+  },
+  "rifbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "RIF",
+    "quote": "BTC"
+  },
+  "rifusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "RIF",
+    "quote": "USDT"
+  },
+  "rlcbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "RLC",
+    "quote": "BTC"
+  },
+  "rlcusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "RLC",
+    "quote": "USDT"
+  },
+  "rndrbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "RNDR",
+    "quote": "BTC"
+  },
+  "rndrusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "RNDR",
+    "quote": "USDT"
+  },
+  "rosebtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ROSE",
+    "quote": "BTC"
+  },
+  "roseusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "ROSE",
+    "quote": "USDT"
+  },
+  "runebtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "RUNE",
+    "quote": "BTC"
+  },
+  "runeusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "RUNE",
+    "quote": "USDT"
+  },
+  "rvnbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "RVN",
+    "quote": "BTC"
+  },
+  "rvnusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "RVN",
+    "quote": "USDT"
+  },
+  "sandbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "SAND",
+    "quote": "BTC"
+  },
+  "sandusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "SAND",
+    "quote": "USDT"
+  },
+  "santosbtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "SANTOS",
+    "quote": "BTC"
+  },
+  "santosusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "SANTOS",
+    "quote": "USDT"
+  },
+  "scrtbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "SCRT",
+    "quote": "BTC"
+  },
+  "scrtusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "SCRT",
+    "quote": "USDT"
+  },
+  "sfpbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "SFP",
+    "quote": "BTC"
+  },
+  "sfpusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "SFP",
+    "quote": "USDT"
+  },
+  "sklbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "SKL",
+    "quote": "BTC"
+  },
+  "sklusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "SKL",
+    "quote": "USDT"
+  },
+  "snxbtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "SNX",
+    "quote": "BTC"
+  },
+  "snxusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "SNX",
+    "quote": "USDT"
+  },
+  "solbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "SOL",
+    "quote": "BTC"
+  },
+  "solusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "SOL",
+    "quote": "USDT"
+  },
+  "srmbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "SRM",
+    "quote": "BTC"
+  },
+  "srmusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "SRM",
+    "quote": "USDT"
+  },
+  "steembtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "STEEM",
+    "quote": "BTC"
+  },
+  "steemusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "STEEM",
+    "quote": "USDT"
+  },
+  "stgbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "STG",
+    "quote": "BTC"
+  },
+  "stgusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "STG",
+    "quote": "USDT"
+  },
+  "stmxbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "STMX",
+    "quote": "BTC"
+  },
+  "stmxusdt": {
+    "price_precision": 6,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00000100",
+    "base": "STMX",
+    "quote": "USDT"
+  },
+  "storjbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "STORJ",
+    "quote": "BTC"
+  },
+  "storjusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "STORJ",
+    "quote": "USDT"
+  },
+  "stptbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "STPT",
+    "quote": "BTC"
+  },
+  "stptusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "STPT",
+    "quote": "USDT"
+  },
+  "straxbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "STRAX",
+    "quote": "BTC"
+  },
+  "straxusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "STRAX",
+    "quote": "USDT"
+  },
+  "stxbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "STX",
+    "quote": "BTC"
+  },
+  "stxusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "STX",
+    "quote": "USDT"
+  },
+  "superbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "SUPER",
+    "quote": "BTC"
+  },
+  "superusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "SUPER",
+    "quote": "USDT"
+  },
+  "sushibtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "SUSHI",
+    "quote": "BTC"
+  },
+  "sushiusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "SUSHI",
+    "quote": "USDT"
+  },
+  "sxpbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "SXP",
+    "quote": "BTC"
+  },
+  "sxpusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "SXP",
+    "quote": "USDT"
+  },
+  "sysbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "SYS",
+    "quote": "BTC"
+  },
+  "sysusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "SYS",
+    "quote": "USDT"
+  },
+  "tctbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "TCT",
+    "quote": "BTC"
+  },
+  "tctusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "TCT",
+    "quote": "USDT"
+  },
+  "tfuelbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "TFUEL",
+    "quote": "BTC"
+  },
+  "tfuelusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "TFUEL",
+    "quote": "USDT"
+  },
+  "thetabtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "THETA",
+    "quote": "BTC"
+  },
+  "thetausdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "THETA",
+    "quote": "USDT"
+  },
+  "tkobtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "TKO",
+    "quote": "BTC"
+  },
+  "tkousdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "TKO",
+    "quote": "USDT"
+  },
+  "tlmbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "TLM",
+    "quote": "BTC"
+  },
+  "tlmusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "TLM",
+    "quote": "USDT"
+  },
+  "tomobtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "TOMO",
+    "quote": "BTC"
+  },
+  "tomousdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "TOMO",
+    "quote": "USDT"
+  },
+  "tornbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "TORN",
+    "quote": "BTC"
+  },
+  "tornusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "TORN",
+    "quote": "USDT"
+  },
+  "trbbtc": {
+    "price_precision": 6,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "TRB",
+    "quote": "BTC"
+  },
+  "trbusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "TRB",
+    "quote": "USDT"
+  },
+  "trubtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "TRU",
+    "quote": "BTC"
+  },
+  "truusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "TRU",
+    "quote": "USDT"
+  },
+  "trxbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "TRX",
+    "quote": "BTC"
+  },
+  "trxusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "TRX",
+    "quote": "USDT"
+  },
+  "tvkbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "TVK",
+    "quote": "BTC"
+  },
+  "tvkusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "TVK",
+    "quote": "USDT"
+  },
+  "twtbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "TWT",
+    "quote": "BTC"
+  },
+  "twtusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "TWT",
+    "quote": "USDT"
+  },
+  "umabtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "UMA",
+    "quote": "BTC"
+  },
+  "umausdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "UMA",
+    "quote": "USDT"
+  },
+  "unfibtc": {
+    "price_precision": 7,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "UNFI",
+    "quote": "BTC"
+  },
+  "unfiusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "UNFI",
+    "quote": "USDT"
+  },
+  "unibtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "UNI",
+    "quote": "BTC"
+  },
+  "uniusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "UNI",
+    "quote": "USDT"
+  },
+  "utkbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "UTK",
+    "quote": "BTC"
+  },
+  "utkusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "UTK",
+    "quote": "USDT"
+  },
+  "vetbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "VET",
+    "quote": "BTC"
+  },
+  "vetusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "VET",
+    "quote": "USDT"
+  },
+  "vgxbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "VGX",
+    "quote": "BTC"
+  },
+  "vgxusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "VGX",
+    "quote": "USDT"
+  },
+  "vidtbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "VIDT",
+    "quote": "BTC"
+  },
+  "vidtusdt": {
+    "price_precision": 5,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "VIDT",
+    "quote": "USDT"
+  },
+  "vitebtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "VITE",
+    "quote": "BTC"
+  },
+  "viteusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "VITE",
+    "quote": "USDT"
+  },
+  "voxelbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "VOXEL",
+    "quote": "BTC"
+  },
+  "voxelusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "VOXEL",
+    "quote": "USDT"
+  },
+  "wanbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "WAN",
+    "quote": "BTC"
+  },
+  "wanusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "WAN",
+    "quote": "USDT"
+  },
+  "wavesbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "WAVES",
+    "quote": "BTC"
+  },
+  "wavesusdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "WAVES",
+    "quote": "USDT"
+  },
+  "waxpbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "WAXP",
+    "quote": "BTC"
+  },
+  "waxpusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "WAXP",
+    "quote": "USDT"
+  },
+  "wingbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "WING",
+    "quote": "BTC"
+  },
+  "wingusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "WING",
+    "quote": "USDT"
+  },
+  "woobtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "WOO",
+    "quote": "BTC"
+  },
+  "woousdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "WOO",
+    "quote": "USDT"
+  },
+  "wrxbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "WRX",
+    "quote": "BTC"
+  },
+  "wrxusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "WRX",
+    "quote": "USDT"
+  },
+  "wtcbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "WTC",
+    "quote": "BTC"
+  },
+  "wtcusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "WTC",
+    "quote": "USDT"
+  },
+  "xembtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "XEM",
+    "quote": "BTC"
+  },
+  "xemusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "XEM",
+    "quote": "USDT"
+  },
+  "xlmbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "XLM",
+    "quote": "BTC"
+  },
+  "xlmusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "XLM",
+    "quote": "USDT"
+  },
+  "xmrbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "XMR",
+    "quote": "BTC"
+  },
+  "xmrusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "XMR",
+    "quote": "USDT"
+  },
+  "xnobtc": {
+    "price_precision": 8,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "XNO",
+    "quote": "BTC"
+  },
+  "xnousdt": {
+    "price_precision": 3,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "XNO",
+    "quote": "USDT"
+  },
+  "xrpbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "XRP",
+    "quote": "BTC"
+  },
+  "xrpusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "XRP",
+    "quote": "USDT"
+  },
+  "xtzbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "XTZ",
+    "quote": "BTC"
+  },
+  "xtzusdt": {
+    "price_precision": 3,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00100000",
+    "base": "XTZ",
+    "quote": "USDT"
+  },
+  "xvsbtc": {
+    "price_precision": 7,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000010",
+    "base": "XVS",
+    "quote": "BTC"
+  },
+  "xvsusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "XVS",
+    "quote": "USDT"
+  },
+  "yfibtc": {
+    "price_precision": 4,
+    "amount_precision": 5,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00010000",
+    "base": "YFI",
+    "quote": "BTC"
+  },
+  "yfiibtc": {
+    "price_precision": 5,
+    "amount_precision": 4,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00001000",
+    "base": "YFII",
+    "quote": "BTC"
+  },
+  "yfiiusdt": {
+    "price_precision": 1,
+    "amount_precision": 4,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "YFII",
+    "quote": "USDT"
+  },
+  "yfiusdt": {
+    "price_precision": 0,
+    "amount_precision": 5,
+    "min_amount": "10.00000000",
+    "tick_size": "1.00000000",
+    "base": "YFI",
+    "quote": "USDT"
+  },
+  "yggbtc": {
+    "price_precision": 8,
+    "amount_precision": 1,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "YGG",
+    "quote": "BTC"
+  },
+  "yggusdt": {
+    "price_precision": 4,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "YGG",
+    "quote": "USDT"
+  },
+  "zecbtc": {
+    "price_precision": 6,
+    "amount_precision": 3,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "ZEC",
+    "quote": "BTC"
+  },
+  "zecusdt": {
+    "price_precision": 1,
+    "amount_precision": 3,
+    "min_amount": "10.00000000",
+    "tick_size": "0.10000000",
+    "base": "ZEC",
+    "quote": "USDT"
+  },
+  "zenbtc": {
+    "price_precision": 6,
+    "amount_precision": 2,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000100",
+    "base": "ZEN",
+    "quote": "BTC"
+  },
+  "zenusdt": {
+    "price_precision": 2,
+    "amount_precision": 2,
+    "min_amount": "10.00000000",
+    "tick_size": "0.01000000",
+    "base": "ZEN",
+    "quote": "USDT"
+  },
+  "zilbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ZIL",
+    "quote": "BTC"
+  },
+  "zilusdt": {
+    "price_precision": 5,
+    "amount_precision": 1,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00001000",
+    "base": "ZIL",
+    "quote": "USDT"
+  },
+  "zrxbtc": {
+    "price_precision": 8,
+    "amount_precision": 0,
+    "min_amount": "0.00010000",
+    "tick_size": "0.00000001",
+    "base": "ZRX",
+    "quote": "BTC"
+  },
+  "zrxusdt": {
+    "price_precision": 4,
+    "amount_precision": 0,
+    "min_amount": "10.00000000",
+    "tick_size": "0.00010000",
+    "base": "ZRX",
+    "quote": "USDT"
+  }
+}
