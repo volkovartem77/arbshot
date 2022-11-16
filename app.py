@@ -4,6 +4,7 @@ from flask import Flask, jsonify
 from flask_cors import cross_origin, CORS
 
 from config import GENERAL_LOG, DEFAULT_SETTINGS
+from rest.restBinanceSpot import RestBinanceSpot
 from utils import log, mem_get_settings, mem_set_settings, mem_get_log, mem_set_bot_status, mem_get_bot_status
 from utils_app import start_bot, stop_bot
 
@@ -89,27 +90,27 @@ def stop():
 #         log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
 #         result = jsonify({'success': 'false', 'error': f'{e}'})
 #     return result
-#
-#
-# @app.route('/get_balance', methods=['GET'])
-# @cross_origin()
-# def get_balance():
-#     """
-#     http://127.0.0.1:5000/get_balance
-#     """
-#     try:
-#         settings = mem_get_settings()
-#         if settings:
-#             rest = RestBinanceSpot(settings['api_key'], settings['api_secret'])
-#             balance = rest.get_all_balances()
-#             balance = dict((a, float(v)) for a, v in list(filter(lambda b: b[1] > 0, balance.items())))
-#             result = jsonify({'balance': balance})
-#         else:
-#             result = jsonify({'success': 'false', 'error': f'mem_get_settings: None', 'balance': {}})
-#     except Exception as e:
-#         log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
-#         result = jsonify({'success': 'false', 'error': f'{e}', 'balance': {}})
-#     return result
+
+
+@app.route('/get_balance', methods=['GET'])
+@cross_origin()
+def get_balance():
+    """
+    http://127.0.0.1:5000/get_balance
+    """
+    try:
+        settings = mem_get_settings()
+        if settings:
+            rest = RestBinanceSpot(settings['api_key'], settings['api_secret'])
+            balance = rest.get_all_balances()
+            balance = dict((a, float(v)) for a, v in list(filter(lambda b: b[1] > 0, balance.items())))
+            result = jsonify({'balance': balance})
+        else:
+            result = jsonify({'success': 'false', 'error': f'mem_get_settings: None', 'balance': {}})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
+        result = jsonify({'success': 'false', 'error': f'{e}', 'balance': {}})
+    return result
 
 
 @app.route('/get_log', methods=['GET'])
