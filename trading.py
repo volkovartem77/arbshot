@@ -107,6 +107,7 @@ class Trading:
             price_3 = decimal(chain[8])
             max_amount_token = decimal(chain[9])
             max_amount_btc = decimal(chain[10])
+            fee = decimal(1 - (self.TakerFee / 100))
 
             # Update balance
             self.Balance = mem_get_balance()
@@ -114,10 +115,13 @@ class Trading:
 
             if forward:
                 amount_token = self.get_amount_token(symbol_1, price_1)
+                expected_amount_btc = amount_token * price_2
                 if amount_token == 0:
-                    self.log(f"SKIPPED Not enough balance for this trade", GENERAL_LOG, arb)
+                    self.log(f"SKIPPED Not enough balance USDT", GENERAL_LOG, arb)
                     return
-
+                if expected_amount_btc > self.Balance['BTC']:
+                    self.log(f"SKIPPED Not enough balance BTC", GENERAL_LOG, arb)
+                    return
                 if self.amount_to_precision(symbol_1, max_amount_token, price_1) == 0:
                     self.log(f"SKIPPED Amount in orderbook is too small", GENERAL_LOG, arb)
                     return
@@ -133,7 +137,6 @@ class Trading:
                     amount_received_token = self.amount_to_precision(symbol_2, amount_received_token, price_2)
                     params1 = (symbol_2, amount_received_token, price_2, ORDER_SIDE_SELL, token)
 
-                    fee = decimal(1 - (self.TakerFee / 100))
                     amount_received_btc = amount_received_token * price_2 * fee
                     amount_received_btc = self.amount_to_precision(symbol_3, amount_received_btc, price_3)
                     params2 = (symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, 'BTC')
