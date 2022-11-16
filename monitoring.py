@@ -34,6 +34,7 @@ class Monitoring(Calculation, Trading):
         structure = create_structure()
 
         self.log(f"Monitoring started", GENERAL_LOG, 'INFO')
+        self.log(f"Balance now {self.Balance['USDT']} USDT  {self.Balance['BTC']} BTC", GENERAL_LOG, 'INFO')
 
         while True:
             # Load Spread
