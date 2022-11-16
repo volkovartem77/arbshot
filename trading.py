@@ -1,3 +1,4 @@
+import asyncio
 import traceback
 from decimal import Decimal
 
@@ -14,6 +15,7 @@ class Trading:
     def __init__(self, params: Params):
         self.rest = RestBinanceSpot(params.APIKey, params.APISecret)
         self.OrderAmountPrc = params.OrderAmountPrc
+        self.TakerFee = params.TakerFee
 
         # Init NATSConnection
         self.NATS = NATSClient()
@@ -81,6 +83,22 @@ class Trading:
                  GENERAL_LOG, 'INFO')
         return order
 
+    async def place_limit_order_async(self, symbol, amount, price, side, base):
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, self.place_limit_order, symbol, amount, price, side, base)
+
+    def place_orders_async(self, params1, params2):
+        # params: tuple(symbol, amount, price, side, base)
+        async def place():
+            task_1 = asyncio.create_task(self.place_limit_order_async(*params1))
+            task_2 = asyncio.create_task(self.place_limit_order_async(*params2))
+
+            order_1 = await task_1
+            order_2 = await task_2
+            return order_1, order_2
+
+        return asyncio.run(place())
+
     def execute(self, chain):
         try:
             arb = chain[0]
@@ -105,7 +123,7 @@ class Trading:
                     self.log(f"SKIPPED Amount in orderbook is too small", GENERAL_LOG, arb)
                     return
 
-                # Step 1: Place MARKET BUY (TOKEN/USDT)
+                # Step 1: Place LIMIT (FOK) BUY TOKEN/USDT
                 token = SYMBOLS_INFO[symbol_1]['base']
                 amount_token = min(amount_token, max_amount_token)
                 order_1 = self.place_limit_fok_order(symbol_1, amount_token, price_1, ORDER_SIDE_BUY, token)
@@ -114,25 +132,21 @@ class Trading:
                     commission_token = sum([decimal(fill['commission']) for fill in order_1['fills']])
                     amount_received_token = amount_token - commission_token
                     amount_received_token = self.amount_to_precision(symbol_2, amount_received_token, price_2)
-                    order_2 = self.place_limit_order(symbol_2, amount_received_token, price_2, ORDER_SIDE_SELL, token)
-                    if order_2['status'] == ORDER_STATUS_FILLED:
-                        commission_btc = sum([decimal(fill['commission']) for fill in order_2['fills']])
-                        amount_received_btc = decimal(order_2['cummulativeQuoteQty']) - commission_btc
-                        amount_received_btc = self.amount_to_precision(symbol_3, amount_received_btc, price_3)
-                        order_3 = self.place_limit_fok_order(symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, token)
-                        if order_3['status'] == ORDER_STATUS_FILLED:
-                            commission_usdt = sum([decimal(fill['commission']) for fill in order_2['fills']])
-                            amount_received_usdt = decimal(order_3['cummulativeQuoteQty']) - commission_usdt
-                            arbitrage_profit = amount_received_usdt - amount_spent_usdt
-                            self.log(f"ARBITRAGE COMPLETED TradeSize {amount_spent_usdt} USDT  "
-                                     f"Profit {arbitrage_profit} USDT", GENERAL_LOG, arb)
-                        else:
-                            self.log(f"ARBITRAGE BROKEN", GENERAL_LOG, arb)
-                    else:
-                        self.log(f"ARBITRAGE BROKEN", GENERAL_LOG, arb)
+                    params1 = (symbol_2, amount_received_token, price_2, ORDER_SIDE_SELL, token)
+
+                    fee = decimal(1 - (self.TakerFee / 100))
+                    amount_received_btc = amount_received_token * price_2 * fee
+                    amount_received_btc = self.amount_to_precision(symbol_3, amount_received_btc, price_3)
+                    params2 = (symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, token)
+
+                    # Step 2: Place LIMIT LIMIT (GTC) TOKEN/BTC BTC/USDT
+                    order_2, order_3 = self.place_orders_async(params1, params2)
+                    self.log(f"ARBITRAGE HOLDING TradeSize {amount_spent_usdt} USDT", GENERAL_LOG, arb)
+                    # todo: -> to stats
                 else:
                     self.log(f"ARBITRAGE CANCELLED", GENERAL_LOG, arb)
             else:
                 self.log(f"Backward not implemented", GENERAL_LOG, arb)
+
         except Exception:
             log(traceback.format_exc(), GENERAL_LOG, 'ERROR', to_mem=True)
