@@ -55,7 +55,7 @@ if __name__ == '__main__':
         exit(0)
     except Exception as err:
         log(f"{str(err)}", GENERAL_LOG, 'ERROR', to_mem=True)
-        log(traceback.format_exc(), GENERAL_LOG)
+        log(traceback.format_exc(), GENERAL_LOG, to_mem=True)
 
 # TODO:
 #  2. стратегия:
