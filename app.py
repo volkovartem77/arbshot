@@ -5,6 +5,7 @@ from flask_cors import cross_origin, CORS
 
 from config import GENERAL_LOG, DEFAULT_SETTINGS
 from utils import log, mem_get_settings, mem_set_settings, mem_get_log, mem_set_bot_status, mem_get_bot_status
+from utils_app import start_bot, stop_bot
 
 # Load default setting to mem
 if mem_get_settings() is None:
@@ -22,56 +23,52 @@ def index():
     return jsonify({'success': 'ok'})
 
 
-# @app.route('/get_bot_status', methods=['GET'])
-# @cross_origin()
-# def get_bot_status():
-#     """
-#     http://127.0.0.1:5000/get_bot_status
-#     """
-#     try:
-#         result = jsonify({'bot_status': str(mem_get_bot_status()), 'error': ''})
-#     except Exception as e:
-#         log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
-#         result = jsonify({'bot_status': 'Error', 'error': f'{e}'})
-#     return result
-#
-#
-# @app.route('/start', methods=['GET'])
-# @cross_origin()
-# def start():
-#     """
-#     http://127.0.0.1:5000/start
-#     """
-#     try:
-#         mem_settings = mem_get_settings()
-#         if mem_settings:
-#             if start_bot():
-#                 mem_set_bot_status("Active")
-#         result = jsonify({'bot_status': str(mem_get_bot_status()), 'error': ''})
-#     except Exception as e:
-#         log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
-#         result = jsonify({'bot_status': 'Error', 'error': f'{e}'})
-#     return result
-#
-#
-# @app.route('/stop', methods=['GET'])
-# @cross_origin()
-# def stop():
-#     """
-#     http://127.0.0.1:5000/stop
-#     """
-#     try:
-#         mem_settings = mem_get_settings()
-#         if mem_settings:
-#             if stop_bot():
-#                 mem_set_bot_status("Stopped")
-#         result = jsonify({'bot_status': str(mem_get_bot_status()), 'error': ''})
-#     except Exception as e:
-#         log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
-#         result = jsonify({'bot_status': 'Error', 'error': f'{e}'})
-#     return result
-#
-#
+@app.route('/get_bot_status', methods=['GET'])
+@cross_origin()
+def get_bot_status():
+    """
+    http://127.0.0.1:5000/get_bot_status
+    """
+    try:
+        result = jsonify({'bot_status': str(mem_get_bot_status()), 'error': ''})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
+        result = jsonify({'bot_status': 'Error', 'error': f'{e}'})
+    return result
+
+
+@app.route('/start', methods=['GET'])
+@cross_origin()
+def start():
+    """
+    http://127.0.0.1:5000/start
+    """
+    try:
+        if start_bot():
+            mem_set_bot_status("Active")
+        result = jsonify({'bot_status': str(mem_get_bot_status()), 'error': ''})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
+        result = jsonify({'bot_status': 'Error', 'error': f'{e}'})
+    return result
+
+
+@app.route('/stop', methods=['GET'])
+@cross_origin()
+def stop():
+    """
+    http://127.0.0.1:5000/stop
+    """
+    try:
+        if stop_bot():
+            mem_set_bot_status("Stopped")
+        result = jsonify({'bot_status': str(mem_get_bot_status()), 'error': ''})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
+        result = jsonify({'bot_status': 'Error', 'error': f'{e}'})
+    return result
+
+
 # @app.route('/get_preferences', methods=['GET'])
 # @cross_origin()
 # def get_preferences():

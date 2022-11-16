@@ -80,3 +80,7 @@ MEM_LOG_LENGTH = get_preferences()['mem_log_length']
 LOG_SIZE_MB = get_preferences()['log_size_mb']
 PRINT_LOG = get_preferences()['print_log']
 TEST_MODE = get_preferences()['test_mode']
+
+# App commands
+COMMAND_START = "start"
+COMMAND_STOP = "stop"
