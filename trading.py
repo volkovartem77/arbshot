@@ -64,7 +64,7 @@ class Trading:
         placing_speed = time_diff_ms(t)
         self.log(f"Order {order['orderId']} {order['type']} {order['symbol']} {order['side']} "
                  f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
-        self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed}ms TransactTime={order['transactTime']}",
+        self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed} ms TransactTime={order['transactTime']}",
                  GENERAL_LOG, 'INFO')
         return order
 
@@ -75,7 +75,7 @@ class Trading:
         placing_speed = time_diff_ms(t)
         self.log(f"Order {order['orderId']} {order['type']} {order['symbol']} {order['side']} "
                  f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
-        self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed}ms TransactTime={order['transactTime']}",
+        self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed} ms TransactTime={order['transactTime']}",
                  GENERAL_LOG, 'INFO')
         return order
 
@@ -136,7 +136,7 @@ class Trading:
                     fee = decimal(1 - (self.TakerFee / 100))
                     amount_received_btc = amount_received_token * price_2 * fee
                     amount_received_btc = self.amount_to_precision(symbol_3, amount_received_btc, price_3)
-                    params2 = (symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, token)
+                    params2 = (symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, 'BTC')
 
                     # Step 2: Place LIMIT LIMIT (GTC) TOKEN/BTC BTC/USDT
                     order_2, order_3 = self.place_orders_async(params1, params2)
