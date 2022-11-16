@@ -42,10 +42,6 @@ def format_symbols_info(symbols_info):
     return dict((k, _format(v)) for k, v in symbols_info.items())
 
 
-# NATS SERVER
-NATS = NATSClient()
-
-
 # MEM CACHE SERVER
 MEMORY_CACHE = Client('127.0.0.1:11211', no_delay=True)
 # MEM CACHE CONST

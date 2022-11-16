@@ -1,7 +1,9 @@
 import traceback
 from decimal import Decimal
 
-from config import GENERAL_LOG, SYMBOLS_INFO, ORDER_SIDE_BUY, ORDER_STATUS_FILLED, ORDER_SIDE_SELL, NATS
+from pynats import NATSClient
+
+from config import GENERAL_LOG, SYMBOLS_INFO, ORDER_SIDE_BUY, ORDER_STATUS_FILLED, ORDER_SIDE_SELL
 from models import Params
 from rest.restBinanceSpot import RestBinanceSpot
 from utils import mem_get_balance, quote_to_base, decimal, round_up, round_down, time_now_ms, time_diff_ms, \
@@ -13,11 +15,18 @@ class Trading:
         self.rest = RestBinanceSpot(params.APIKey, params.APISecret)
         self.OrderAmountPrc = params.OrderAmountPrc
 
-    @staticmethod
-    def log(text, module, mark=''):
+        # Init NATSConnection
+        self.NATS = NATSClient()
+        self.NATS.connect()
+
+    def log(self, text, module, mark=''):
         dt = datetime_str_ms()
         payload = dt + ' ' + mark + ' ' + text + '\n'
-        NATS.publish(subject=module, payload=payload.encode())
+        try:
+            self.NATS.publish(subject=module, payload=payload.encode())
+        except BrokenPipeError:
+            self.NATS.connect()
+            self.NATS.publish(subject=module, payload=payload.encode())
 
     @staticmethod
     def price_to_precision(symbol, price: Decimal):

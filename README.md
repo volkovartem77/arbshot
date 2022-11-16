@@ -25,6 +25,12 @@ sudo apt install -y libmemcached-tools
 sudo systemctl start memcached
 ```
 
+NATS server
+```
+sudo docker run -p 4222:4222 -p 8222:8222 -p 6222:6222 --name nats-server -ti nats:latest
+telnet localhost 4222
+```
+
 Supervisor
 ```
 apt-get install supervisor -y
@@ -50,6 +56,7 @@ deactivate
 ```
 supervisorctl status
 supervisorctl start flask_server
+supervisorctl start logger
 supervisorctl start streamBinanceSpot
 supervisorctl start monitoring
 supervisorctl status

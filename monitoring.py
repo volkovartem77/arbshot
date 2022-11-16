@@ -2,7 +2,7 @@ import time
 import traceback
 
 from calculation import Calculation
-from config import GENERAL_LOG, SYMBOLS_LOWER, NATS
+from config import GENERAL_LOG, SYMBOLS_LOWER
 from models import Params
 from trading import Trading
 from utils import mem_get_spread, time_diff_ms, mem_get_settings, mem_set_log, log
@@ -18,9 +18,6 @@ class Monitoring(Calculation, Trading):
         # Speed milliseconds
         self.GetSpreadSpeed = None
         self.CalcSpreadSpeed = None
-
-        # Init NATSConnection
-        NATS.connect()
 
     def run(self):
         # Clear Log
