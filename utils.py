@@ -113,7 +113,7 @@ def create_backlog(module):
     file.close()
 
 
-def log(text, module, mark='', to_mem=False):
+def log_to_file(msg, module):
     os.makedirs(LOG_PATH, exist_ok=True)
     path = '{}/{}.log'.format(LOG_PATH, module)
     try:
@@ -126,13 +126,18 @@ def log(text, module, mark='', to_mem=False):
     except FileNotFoundError:
         file = open(path, "a")
 
-    dt = datetime_str_ms()
-    file.write(dt + ' ' + mark + ' ' + text + '\n')
+    file.write(msg)
     file.close()
-    if PRINT_LOG:
-        print(dt + ' ' + mark + ' ' + text)
+
+
+def log(text, module, mark='', to_file=True, to_mem=False):
+    dt = datetime_str_ms()
+    if to_file:
+        log_to_file(dt + ' ' + mark + ' ' + text + '\n', module)
     if to_mem:
         mem_add_to_log(module, dt + ' ' + mark + ' ' + text + '\n')
+    if PRINT_LOG:
+        print(dt + ' ' + mark + ' ' + text)
 
 
 def time_now_mcs():

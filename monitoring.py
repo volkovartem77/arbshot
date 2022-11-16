@@ -2,10 +2,10 @@ import time
 import traceback
 
 from calculation import Calculation
-from config import GENERAL_LOG, SYMBOLS_LOWER
+from config import GENERAL_LOG, SYMBOLS_LOWER, NATS
 from models import Params
 from trading import Trading
-from utils import log, mem_get_spread, time_diff_ms, mem_get_settings, mem_set_log
+from utils import mem_get_spread, time_diff_ms, mem_get_settings, mem_set_log, log
 from utils_arb import create_structure
 
 
@@ -19,6 +19,9 @@ class Monitoring(Calculation, Trading):
         self.GetSpreadSpeed = None
         self.CalcSpreadSpeed = None
 
+        # Init NATSConnection
+        NATS.connect()
+
     def run(self):
         # Clear Log
         mem_set_log(GENERAL_LOG, [])
@@ -26,7 +29,7 @@ class Monitoring(Calculation, Trading):
         # Create structure
         structure = create_structure()
 
-        log(f"Monitoring started", GENERAL_LOG, 'INFO', to_mem=True)
+        self.log(f"Monitoring started", GENERAL_LOG, 'INFO')
 
         while True:
             # Load Spread
@@ -41,11 +44,11 @@ class Monitoring(Calculation, Trading):
 
             # Execute Best
             if best:
-                log(f"NEW ARBITRAGE {'{:.4f}'.format(best[2])}%", GENERAL_LOG, best[0], to_mem=True)
+                self.log(f"NEW ARBITRAGE {'{:.4f}'.format(best[2])}%", GENERAL_LOG, best[0])
                 if self.Params.Trading:
-                    log(f"GetSpreadSpeed={self.GetSpreadSpeed} CalcSpreadSpeed={self.CalcSpreadSpeed}",
-                        GENERAL_LOG, 'INFO', to_mem=True)
                     self.execute(best)
+                    self.log(f"GetSpreadSpeed={self.GetSpreadSpeed} CalcSpreadSpeed={self.CalcSpreadSpeed}",
+                             GENERAL_LOG, best[0])
 
 
 if __name__ == '__main__':
@@ -56,3 +59,9 @@ if __name__ == '__main__':
     except Exception as err:
         log(f"{str(err)}", GENERAL_LOG, 'ERROR', to_mem=True)
         log(traceback.format_exc(), GENERAL_LOG)
+
+# TODO:
+#  2. стратегия:
+#       Limit (FOK), Limit Limit (GTC). Если первый прошел, разместить 2й и 3й одновременно и оставить в стакане.
+#       Иметь буфер BTC
+#       Для backward: Limit (FOK) на 2й ордер (token/BTC) и если он прошел - Limit Limit (GTC)

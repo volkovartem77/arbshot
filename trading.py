@@ -1,17 +1,23 @@
 import traceback
 from decimal import Decimal
 
-from config import GENERAL_LOG, SYMBOLS_INFO, ORDER_SIDE_BUY, ORDER_STATUS_FILLED, ORDER_SIDE_SELL
+from config import GENERAL_LOG, SYMBOLS_INFO, ORDER_SIDE_BUY, ORDER_STATUS_FILLED, ORDER_SIDE_SELL, NATS
 from models import Params
 from rest.restBinanceSpot import RestBinanceSpot
-from utils import mem_get_balance, log, quote_to_base, decimal, round_up, round_down, time_now_ms, time_diff_ms
+from utils import mem_get_balance, quote_to_base, decimal, round_up, round_down, time_now_ms, time_diff_ms, \
+    datetime_str_ms
 
 
 class Trading:
     def __init__(self, params: Params):
         self.rest = RestBinanceSpot(params.APIKey, params.APISecret)
         self.OrderAmountPrc = params.OrderAmountPrc
-        self.Log = []
+
+    @staticmethod
+    def log(text, module, mark=''):
+        dt = datetime_str_ms()
+        payload = dt + ' ' + mark + ' ' + text + '\n'
+        NATS.publish(subject=module, payload=payload.encode())
 
     @staticmethod
     def price_to_precision(symbol, price: Decimal):
@@ -30,7 +36,7 @@ class Trading:
         balance = mem_get_balance()
         if balance:
             balance_usdt = balance['USDT']
-            log(f"Balance now {balance_usdt} USDT", GENERAL_LOG, 'INFO', to_mem=True)
+            self.log(f"Balance now {balance_usdt} USDT", GENERAL_LOG, 'INFO')
             amount_usdt = balance_usdt * decimal(self.OrderAmountPrc / 100)
             amount_btc = self.amount_to_precision(symbol, quote_to_base(amount_usdt, price), price)
             return amount_btc
@@ -39,20 +45,31 @@ class Trading:
         balance = mem_get_balance()
         if balance:
             balance_usdt = balance['USDT']
-            log(f"Balance now {balance_usdt} USDT", GENERAL_LOG, 'INFO', to_mem=True)
+            self.log(f"Balance now {balance_usdt} USDT", GENERAL_LOG, 'INFO')
             amount_usdt = balance_usdt * decimal(self.OrderAmountPrc / 100)
             amount_token = self.amount_to_precision(symbol, quote_to_base(amount_usdt, price), price)
             return amount_token
 
     def place_limit_order(self, symbol, amount, price, side, base):
-        log(f"Send LIMIT {symbol} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO', to_mem=True)
+        self.log(f"Send LIMIT {symbol} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
+        t = time_now_ms()
+        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC')
+        placing_speed = time_diff_ms(t)
+        self.log(f"Order {order['orderId']} {order['type']} {order['symbol']} {order['side']} "
+                 f"{order['amount']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
+        self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed}ms TransactTime={order['transactTime']}",
+                 GENERAL_LOG, 'INFO')
+        return order
+
+    def place_limit_fok_order(self, symbol, amount, price, side, base):
+        self.log(f"Send LIMIT {symbol} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
         t = time_now_ms()
         order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK')
         placing_speed = time_diff_ms(t)
-        log(f"Order {order['orderId']} {order['type']} {order['symbol']} {order['side']} "
-            f"{order['amount']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO', to_mem=True)
-        log(f"Order {order['orderId']} PlacingSpeed={placing_speed}ms TransactTime={order['transactTime']}",
-            GENERAL_LOG, 'INFO', to_mem=True)
+        self.log(f"Order {order['orderId']} {order['type']} {order['symbol']} {order['side']} "
+                 f"{order['amount']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
+        self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed}ms TransactTime={order['transactTime']}",
+                 GENERAL_LOG, 'INFO')
         return order
 
     def execute(self, chain):
@@ -72,17 +89,17 @@ class Trading:
             if forward:
                 amount_token = self.get_amount_token(symbol_1, price_1)
                 if amount_token == 0:
-                    log(f"SKIPPED Not enough balance for this trade", GENERAL_LOG, arb, to_mem=True)
+                    self.log(f"SKIPPED Not enough balance for this trade", GENERAL_LOG, arb)
                     return
 
                 if self.amount_to_precision(symbol_1, max_amount_token, price_1) == 0:
-                    log(f"SKIPPED Amount in orderbook is too small", GENERAL_LOG, arb, to_mem=True)
+                    self.log(f"SKIPPED Amount in orderbook is too small", GENERAL_LOG, arb)
                     return
 
                 # Step 1: Place MARKET BUY (TOKEN/USDT)
                 token = SYMBOLS_INFO[symbol_1]['base']
                 amount_token = min(amount_token, max_amount_token)
-                order_1 = self.place_limit_order(symbol_1, amount_token, price_1, ORDER_SIDE_BUY, token)
+                order_1 = self.place_limit_fok_order(symbol_1, amount_token, price_1, ORDER_SIDE_BUY, token)
                 if order_1['status'] == ORDER_STATUS_FILLED:
                     amount_spent_usdt = decimal(order_1['cummulativeQuoteQty'])
                     commission_token = sum([decimal(fill['commission']) for fill in order_1['fills']])
@@ -93,23 +110,20 @@ class Trading:
                         commission_btc = sum([decimal(fill['commission']) for fill in order_2['fills']])
                         amount_received_btc = decimal(order_2['cummulativeQuoteQty']) - commission_btc
                         amount_received_btc = self.amount_to_precision(symbol_3, amount_received_btc, price_3)
-                        order_3 = self.place_limit_order(symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, token)
+                        order_3 = self.place_limit_fok_order(symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, token)
                         if order_3['status'] == ORDER_STATUS_FILLED:
                             commission_usdt = sum([decimal(fill['commission']) for fill in order_2['fills']])
                             amount_received_usdt = decimal(order_3['cummulativeQuoteQty']) - commission_usdt
                             arbitrage_profit = amount_received_usdt - amount_spent_usdt
-                            log(f"ARBITRAGE COMPLETED TradeSize {amount_spent_usdt} USDT  Profit {arbitrage_profit} USDT",
-                                GENERAL_LOG, arb, to_mem=True)
+                            self.log(f"ARBITRAGE COMPLETED TradeSize {amount_spent_usdt} USDT  "
+                                     f"Profit {arbitrage_profit} USDT", GENERAL_LOG, arb)
                         else:
-                            log(f"ARBITRAGE BROKEN", GENERAL_LOG, arb, to_mem=True)
+                            self.log(f"ARBITRAGE BROKEN", GENERAL_LOG, arb)
                     else:
-                        log(f"ARBITRAGE BROKEN", GENERAL_LOG, arb, to_mem=True)
+                        self.log(f"ARBITRAGE BROKEN", GENERAL_LOG, arb)
                 else:
-                    log(f"ARBITRAGE CANCELLED", GENERAL_LOG, arb, to_mem=True)
+                    self.log(f"ARBITRAGE CANCELLED", GENERAL_LOG, arb)
             else:
-                log(f"Backward not implemented", GENERAL_LOG, arb, to_mem=True)
+                self.log(f"Backward not implemented", GENERAL_LOG, arb)
         except Exception:
-            log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
-
-
-
+            self.log(traceback.format_exc(), GENERAL_LOG, 'ERROR')

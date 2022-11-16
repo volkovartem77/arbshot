@@ -1,8 +1,17 @@
 import simplejson
 from pymemcache.client.base import Client
+from pynats import NATSClient
 
 PROJECT_PATH = '/home/artem/PycharmProjects/arbshot/'
 SUPERVISOR_PATH = '/etc/supervisor/conf.d/'
+
+
+def get_preferences():
+    ff = open(PROJECT_PATH + 'preferences.json', "r")
+    # ff = open(PROJECT_PATH + 'test_preferences.json', "r")  # TEST
+    preferences = simplejson.loads(ff.read())
+    ff.close()
+    return preferences
 
 
 def get_symbols():
@@ -20,14 +29,6 @@ def get_symbols_info():
     return result
 
 
-def get_preferences():
-    ff = open(PROJECT_PATH + 'preferences.json', "r")
-    # ff = open(PROJECT_PATH + 'test_preferences.json', "r")  # TEST
-    preferences = simplejson.loads(ff.read())
-    ff.close()
-    return preferences
-
-
 def format_symbols_info(symbols_info):
     def _format(data):
         return {
@@ -39,6 +40,10 @@ def format_symbols_info(symbols_info):
             "quote": str(data['quote'])
         }
     return dict((k, _format(v)) for k, v in symbols_info.items())
+
+
+# NATS SERVER
+NATS = NATSClient()
 
 
 # MEM CACHE SERVER
