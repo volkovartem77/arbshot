@@ -23,18 +23,10 @@ class Monitoring(Calculation, Trading):
         # Clear Log
         mem_set_log(GENERAL_LOG, [])
 
-        # Update Balance
-        time.sleep(10)
-        self.Balance = mem_get_balance()
-        while not self.Balance:
-            self.Balance = mem_get_balance()
-            time.sleep(1)
-
         # Create structure
         structure = create_structure()
 
         self.log(f"Monitoring started", GENERAL_LOG, 'INFO')
-        self.log(f"Balance now {self.Balance['USDT']} USDT  {self.Balance['BTC']} BTC", GENERAL_LOG, 'INFO')
 
         while True:
             # Load Spread

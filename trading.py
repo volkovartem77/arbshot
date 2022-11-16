@@ -108,6 +108,10 @@ class Trading:
             max_amount_token = decimal(chain[9])
             max_amount_btc = decimal(chain[10])
 
+            # Update balance
+            self.Balance = mem_get_balance()
+            self.log(f"Balance now {self.Balance['USDT']} USDT  {self.Balance['BTC']} BTC", GENERAL_LOG, 'INFO')
+
             if forward:
                 amount_token = self.get_amount_token(symbol_1, price_1)
                 if amount_token == 0:
@@ -142,10 +146,6 @@ class Trading:
                     self.log(f"ARBITRAGE CANCELLED", GENERAL_LOG, arb)
             else:
                 self.log(f"Backward not implemented", GENERAL_LOG, arb)
-
-            # Update balance
-            self.Balance = mem_get_balance()
-            self.log(f"Balance now {self.Balance['USDT']} USDT  {self.Balance['BTC']} BTC", GENERAL_LOG, 'INFO')
 
         except Exception:
             log(traceback.format_exc(), GENERAL_LOG, 'ERROR', to_mem=True)
