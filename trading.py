@@ -7,7 +7,7 @@ from config import GENERAL_LOG, SYMBOLS_INFO, ORDER_SIDE_BUY, ORDER_STATUS_FILLE
 from models import Params
 from rest.restBinanceSpot import RestBinanceSpot
 from utils import mem_get_balance, quote_to_base, decimal, round_up, round_down, time_now_ms, time_diff_ms, \
-    datetime_str_ms
+    datetime_str_ms, log
 
 
 class Trading:
@@ -135,4 +135,4 @@ class Trading:
             else:
                 self.log(f"Backward not implemented", GENERAL_LOG, arb)
         except Exception:
-            self.log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
+            log(traceback.format_exc(), GENERAL_LOG, 'ERROR', to_mem=True)
