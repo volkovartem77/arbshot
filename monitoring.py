@@ -5,7 +5,7 @@ from calculation import Calculation
 from config import GENERAL_LOG, SYMBOLS_LOWER
 from models import Params
 from trading import Trading
-from utils import mem_get_spread, time_diff_ms, mem_get_settings, mem_set_log, log
+from utils import mem_get_spread, time_diff_ms, mem_get_settings, mem_set_log, log, mem_get_balance
 from utils_arb import create_structure
 
 
@@ -22,6 +22,12 @@ class Monitoring(Calculation, Trading):
     def run(self):
         # Clear Log
         mem_set_log(GENERAL_LOG, [])
+
+        # Update Balance
+        self.Balance = mem_get_balance()
+        while not self.Balance:
+            self.Balance = mem_get_balance()
+            time.sleep(1)
 
         # Create structure
         structure = create_structure()
