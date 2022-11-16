@@ -24,6 +24,7 @@ class Monitoring(Calculation, Trading):
         mem_set_log(GENERAL_LOG, [])
 
         # Update Balance
+        time.sleep(10)
         self.Balance = mem_get_balance()
         while not self.Balance:
             self.Balance = mem_get_balance()
