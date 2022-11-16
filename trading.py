@@ -67,7 +67,7 @@ class Trading:
         order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC')
         placing_speed = time_diff_ms(t)
         self.log(f"Order {order['orderId']} {order['type']} {order['symbol']} {order['side']} "
-                 f"{order['amount']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
+                 f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
         self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed}ms TransactTime={order['transactTime']}",
                  GENERAL_LOG, 'INFO')
         return order
@@ -78,7 +78,7 @@ class Trading:
         order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK')
         placing_speed = time_diff_ms(t)
         self.log(f"Order {order['orderId']} {order['type']} {order['symbol']} {order['side']} "
-                 f"{order['amount']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
+                 f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
         self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed}ms TransactTime={order['transactTime']}",
                  GENERAL_LOG, 'INFO')
         return order
