@@ -68,6 +68,32 @@ class Trading:
         # log(f'Min {min_amount} My {my_amount} ({symbol} {price})', GENERAL_LOG, 'TEST')
         return my_amount if my_amount >= min_amount else 0
 
+    @staticmethod
+    def amount_to_precision_2(symbol, amount: Decimal, price: Decimal, balance_token_remain: Decimal):
+        amount_precision = int(SYMBOLS_INFO[symbol]['amount_precision'])
+        conv = decimal(SYMBOLS_INFO[symbol]['min_amount']) / price
+        min_amount = round_up(conv, amount_precision)
+
+        balance_token = amount + balance_token_remain
+        my_amount = round_up(amount, amount_precision)
+        if my_amount > balance_token:
+            my_amount = round_down(amount, amount_precision)
+
+        return my_amount if my_amount >= min_amount else 0
+
+    @staticmethod
+    def amount_to_precision_3(symbol, amount: Decimal, price: Decimal, balance_btc_remain: Decimal):
+        amount_precision = int(SYMBOLS_INFO[symbol]['amount_precision'])
+        conv = decimal(SYMBOLS_INFO[symbol]['min_amount']) / price
+        min_amount = round_up(conv, amount_precision)
+
+        balance_btc = amount + balance_btc_remain  # todo: add BTC lock;  - self.AmountBTCLock (from Params)
+        my_amount = round_up(amount, amount_precision)
+        if my_amount > balance_btc:
+            my_amount = round_down(amount, amount_precision)
+
+        return my_amount if my_amount >= min_amount else 0
+
     def get_amount_btc(self, symbol, price):
         balance_usdt = self.Balance['USDT']
         amount_usdt = balance_usdt * decimal(self.OrderAmountPrc / 100)
@@ -155,16 +181,26 @@ class Trading:
                 # Step 1: Place LIMIT (FOK) BUY TOKEN/USDT
                 token = SYMBOLS_INFO[symbol_1]['base']
                 amount_token = min(amount_token, max_amount_token)
+                balance_token_remain = self.Balance[token]
+                balance_btc_remain = self.Balance['BTC']
                 order_1, p_speed_1 = self.place_limit_fok_order(symbol_1, amount_token, price_1, ORDER_SIDE_BUY, token)
                 if order_1['status'] == ORDER_STATUS_FILLED:
                     amount_spent_usdt = decimal(order_1['cummulativeQuoteQty'])
                     commission_token = sum([decimal(fill['commission']) for fill in order_1['fills']])
                     amount_received_token = amount_token - commission_token
-                    amount_received_token = self.amount_to_precision(symbol_2, amount_received_token, price_2)
+                    amount_received_token = self.amount_to_precision_2(symbol_2, amount_received_token, price_2,
+                                                                       balance_token_remain)
+                    if amount_received_token == 0:
+                        self.log(f"ARBITRAGE BROKEN {amount_token - commission_token} {token} left", GENERAL_LOG, arb)
+                        return
                     params1 = (symbol_2, amount_received_token, price_2, ORDER_SIDE_SELL, token)
 
                     amount_received_btc = amount_received_token * price_2 * fee
-                    amount_received_btc = self.amount_to_precision(symbol_3, amount_received_btc, price_3)
+                    amount_received_btc = self.amount_to_precision_3(symbol_3, amount_received_btc, price_3,
+                                                                     balance_btc_remain)
+                    if amount_received_btc == 0:
+                        self.log(f"ARBITRAGE BROKEN {amount_received_token * price_2 * fee} BTC left", GENERAL_LOG, arb)
+                        return
                     params2 = (symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, 'BTC')
 
                     # Step 2: Place LIMIT LIMIT (GTC) TOKEN/BTC BTC/USDT
