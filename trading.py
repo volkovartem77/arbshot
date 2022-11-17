@@ -85,10 +85,10 @@ class Trading:
         t = time.time()
         order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC', client_order_id=client_order_id)
         placing_speed = time_diff_ms(t)
-        self.log(f"Order {order['clientOrderId']} {order['type']} {order['symbol']} {order['side']} "
+        self.log(f"Order {order['clientOrderId'][:14]} {order['type']} {order['symbol']} {order['side']} "
                  f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
-        self.log(f"Order {order['clientOrderId']} PlacingSpeed={placing_speed} ms TransactTime={order['transactTime']}",
-                 GENERAL_LOG, 'INFO')
+        self.log(f"Order {order['clientOrderId'][:14]} PlacingSpeed={placing_speed} ms "
+                 f"TransactTime={order['transactTime']}", GENERAL_LOG, 'INFO')
         return order, placing_speed
 
     def place_limit_fok_order(self, symbol, amount, price, side, base):
@@ -97,10 +97,10 @@ class Trading:
         t = time.time()
         order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK', client_order_id=client_order_id)
         placing_speed = time_diff_ms(t)
-        self.log(f"Order {order['clientOrderId']} {order['type']} {order['symbol']} {order['side']} "
+        self.log(f"Order {order['clientOrderId'][:14]} {order['type']} {order['symbol']} {order['side']} "
                  f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
-        self.log(f"Order {order['clientOrderId']} PlacingSpeed={placing_speed} ms TransactTime={order['transactTime']}",
-                 GENERAL_LOG, 'INFO')
+        self.log(f"Order {order['clientOrderId'][:14]} PlacingSpeed={placing_speed} ms "
+                 f"TransactTime={order['transactTime']}", GENERAL_LOG, 'INFO')
         return order, placing_speed
 
     async def place_limit_order_async(self, symbol, amount, price, side, base):

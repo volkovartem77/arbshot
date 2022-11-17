@@ -1,5 +1,7 @@
 import traceback
 
+import simplejson
+
 from config import GENERAL_LOG, ORDER_STATUS_NEW, ORDER_STATUS_CANCELED
 from utils import log, mem_get_raw_stats, mem_get_order, decimal, mem_remove_raw_stats, mem_rm_order, mem_add_history
 
@@ -17,6 +19,7 @@ def run():
         raw_stats = mem_get_raw_stats()
         if raw_stats:
             for chain_id, raw_stat in raw_stats.items():
+                raw_stat = simplejson.loads(raw_stat)
                 order_1 = mem_get_order(raw_stat['order_1'])
                 order_2 = mem_get_order(raw_stat['order_2'])
                 order_3 = mem_get_order(raw_stat['order_3'])
