@@ -35,9 +35,9 @@ Supervisor
 ```
 apt-get install supervisor -y
 mkdir /var/log/arbshot
+mkdir /root/arbshot/supervisor
 cp ~/arbshot/flask_server.conf /etc/supervisor/conf.d/flask_server.conf
 cp ~/arbshot/arbshot.conf /etc/supervisor/conf.d/arbshot.conf
-mkdir /root/arbshot/supervisor
 supervisorctl update
 ```
 

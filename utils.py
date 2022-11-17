@@ -12,9 +12,9 @@ from config import LOG_PATH, LOG_SIZE_MB, PRINT_LOG, MEMORY_CACHE, MEMORY_CACHE_
     MEM_BOT_STATUS, MEM_SETTINGS, STREAM_LOG, MEM_BALANCE, MEM_RAW_STATS, MEM_ORDER, MEM_HISTORY
 
 
-def set_mem_cache(key, prefix, data, expire=None):
+def set_mem_cache(key, prefix, data):
     try:
-        MEMORY_CACHE.set(f'{key}:{prefix}', simplejson.dumps(data), expire=expire)
+        MEMORY_CACHE.set(f'{key}:{prefix}', simplejson.dumps(data))
     except TypeError:
         log(traceback.format_exc(), MEMORY_CACHE_LOG)
 
