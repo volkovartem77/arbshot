@@ -316,4 +316,4 @@ def make_chain_id():
 
 
 def make_client_order_id():
-    return 'arbshot' + uuid.uuid4().hex
+    return 'arb_' + uuid.uuid4().hex

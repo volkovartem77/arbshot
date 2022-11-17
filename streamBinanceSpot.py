@@ -25,7 +25,7 @@ async def on_message(msg):
 
                 if msg['o'] == 'LIMIT':
                     client_order_id = msg['c']
-                    if 'arbshot' in client_order_id:
+                    if 'arb_' in client_order_id:
                         status = msg['X']
                         if status in [ORDER_STATUS_NEW, ORDER_STATUS_FILLED, ORDER_STATUS_CANCELED]:
                             side = msg['S']
