@@ -6,7 +6,7 @@ from flask_cors import cross_origin, CORS
 from config import GENERAL_LOG, DEFAULT_SETTINGS
 from utils import log, mem_get_settings, mem_set_settings, mem_get_log, mem_set_bot_status, mem_get_bot_status, \
     mem_get_balance, mem_get_history, mem_set_history
-from utils_app import start_bot, stop_bot
+from utils_app import start_bot, stop_bot, get_supervisor_status
 
 # Load default setting to mem
 if mem_get_settings() is None:
@@ -162,6 +162,21 @@ def get_log():
     except Exception as e:
         log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
         result = jsonify({'success': 'false', 'error': f'{e}', 'log': []})
+    return result
+
+
+@app.route('/get_supervisor_processes', methods=['GET'])
+@cross_origin()
+def get_supervisor_processes():
+    """
+    http://127.0.0.1:5000/get_supervisor_processes
+    """
+    try:
+        supervisor_processes = [p for p in get_supervisor_status() if 'flask_server' not in p['process_name']]
+        result = jsonify({'success': 'true', 'supervisor_processes': supervisor_processes, 'error': ''})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
+        result = jsonify({'success': 'false', 'error': f'{e}', 'supervisor_processes': []})
     return result
 
 
