@@ -1,6 +1,7 @@
 import os
 import time
 import traceback
+import uuid
 from datetime import datetime
 from decimal import Decimal
 
@@ -8,12 +9,12 @@ import pytz as pytz
 import simplejson
 
 from config import LOG_PATH, LOG_SIZE_MB, PRINT_LOG, MEMORY_CACHE, MEMORY_CACHE_LOG, MEM_LOG, MEM_LOG_LENGTH, \
-    MEM_BOT_STATUS, MEM_SETTINGS, STREAM_LOG, MEM_BALANCE
+    MEM_BOT_STATUS, MEM_SETTINGS, STREAM_LOG, MEM_BALANCE, MEM_RAW_STATS, MEM_ORDER, MEM_HISTORY
 
 
-def set_mem_cache(key, prefix, data):
+def set_mem_cache(key, prefix, data, expire=None):
     try:
-        MEMORY_CACHE.set(f'{key}:{prefix}', simplejson.dumps(data))
+        MEMORY_CACHE.set(f'{key}:{prefix}', simplejson.dumps(data), expire=expire)
     except TypeError:
         log(traceback.format_exc(), MEMORY_CACHE_LOG)
 
@@ -23,6 +24,13 @@ def get_mem_cache(var, prefix):
         data = MEMORY_CACHE.get(f'{var}:{prefix}')
         if data:
             return simplejson.loads(data)
+    except TypeError:
+        log(traceback.format_exc(), MEMORY_CACHE_LOG)
+
+
+def delete_mem_cache(var, prefix):
+    try:
+        MEMORY_CACHE.delete(f'{var}:{prefix}')
     except TypeError:
         log(traceback.format_exc(), MEMORY_CACHE_LOG)
 
@@ -71,6 +79,70 @@ def mem_get_balance():
 def format_balance(data):
     if data is not None:
         return dict((str(asset), decimal(balance)) for asset, balance in data.items())
+
+
+def mem_set_raw_stats(raw_stats: dict):
+    prefix = f''.lower()
+    set_mem_cache(MEM_RAW_STATS, prefix, raw_stats)
+
+
+def mem_get_raw_stats():
+    prefix = f''.lower()
+    return get_mem_cache(MEM_RAW_STATS, prefix)
+
+
+def mem_add_raw_stats(chain_id, raw_stat):
+    raw_stats = mem_get_raw_stats()
+    if raw_stats is None:
+        mem_set_raw_stats({})
+        raw_stats = mem_get_raw_stats()
+    raw_stats.update({chain_id: raw_stat})
+    mem_set_raw_stats(raw_stats)
+
+
+def mem_remove_raw_stats(chain_id):
+    raw_stats = mem_get_raw_stats()
+    if raw_stats and chain_id in raw_stats:
+        raw_stats.pop(chain_id)
+        mem_set_raw_stats(raw_stats)
+
+
+def mem_set_order(order_id, order: dict):
+    prefix = f'{order_id}'.lower()
+    set_mem_cache(MEM_ORDER, prefix, order)
+
+
+def mem_get_order(order_id):
+    prefix = f'{order_id}'.lower()
+    return get_mem_cache(MEM_ORDER, prefix)
+
+
+def mem_rm_order(order_id):
+    prefix = f'{order_id}'.lower()
+    delete_mem_cache(MEM_ORDER, prefix)
+
+
+def mem_set_history(history: dict):
+    prefix = f''.lower()
+    set_mem_cache(MEM_HISTORY, prefix, history)
+
+
+def mem_get_history():
+    prefix = f''.lower()
+    return get_mem_cache(MEM_HISTORY, prefix)
+
+
+def mem_add_history(chain_id, history):
+    mem_history = mem_get_history()
+    if mem_history is None:
+        mem_set_history({})
+        mem_history = mem_get_history()
+    mem_history.update({chain_id: history})
+    mem_set_history(mem_history)
+
+
+def datetime_str():
+    return datetime.now().replace(microsecond=0).isoformat().replace('T', ' ')
 
 
 def datetime_str_ms(tz=False):
@@ -237,3 +309,11 @@ def retrying(function, kwargs, exception, attempts: int, retrying_delay: int):
                 f'Attempts left {attempts - 1 - a}', STREAM_LOG, 'STREAM')
             time.sleep(retrying_delay)
     return function(**kwargs)
+
+
+def make_chain_id():
+    return uuid.uuid4().hex
+
+
+def make_client_order_id():
+    return 'arbshot_' + uuid.uuid4().hex

@@ -40,9 +40,8 @@ def module(module_name, command):
 
 def start_stop_bot(command):
     try:
-        stream = module('streamBinanceSpot', command)
         trading = module('monitoring', command)
-        return stream and trading
+        return trading
     except Exception as e:
         log(f'Exception: {e}', GENERAL_LOG)
         return False

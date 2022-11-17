@@ -7,18 +7,41 @@ import websockets
 from requests import ReadTimeout
 from websockets.exceptions import ConnectionClosedError
 
-from config import STREAM_LOG
+from config import STREAM_LOG, ORDER_SIDE_SELL, ORDER_STATUS_NEW, ORDER_STATUS_FILLED, ORDER_STATUS_CANCELED
 from exceptions import NoConnectionException
 from rest.restBinanceSpot import RestBinanceSpot
-from utils import mem_set_balance, mem_get_settings, log, time_now_ms, mem_get_balance, retrying
+from utils import mem_set_balance, mem_get_settings, log, time_now_ms, mem_get_balance, retrying, mem_set_order
 
 
 async def on_message(msg):
     try:
         msg = simplejson.loads(msg)
-        # print(time.time(), msg)
+        print(time.time(), msg)
 
         if 'e' in msg:
+            # Update open orders
+            if msg['e'] == 'executionReport':
+                log(f"{msg}", log_file_name, 'TEST')
+
+                if msg['o'] == 'LIMIT':
+                    client_order_id = msg['c']
+                    if 'arbshot' in client_order_id:
+                        status = msg['X']
+                        if status in [ORDER_STATUS_NEW, ORDER_STATUS_FILLED, ORDER_STATUS_CANCELED]:
+                            side = msg['S']
+                            amount_received = msg['Z'] if side == ORDER_SIDE_SELL else msg['z']
+
+                            order = {
+                                'symbol': msg['s'],
+                                'side': side,
+                                'status': status,
+                                'price': msg['p'],
+                                'amount': msg['q'],
+                                'amount_received': amount_received
+                            }
+
+                            mem_set_order(client_order_id, order)
+
             # Update balances
             if msg['e'] == 'outboundAccountPosition':
                 balance = mem_get_balance()

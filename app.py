@@ -5,7 +5,7 @@ from flask_cors import cross_origin, CORS
 
 from config import GENERAL_LOG, DEFAULT_SETTINGS
 from utils import log, mem_get_settings, mem_set_settings, mem_get_log, mem_set_bot_status, mem_get_bot_status, \
-    mem_get_balance
+    mem_get_balance, mem_get_history, mem_set_history
 from utils_app import start_bot, stop_bot
 
 # Load default setting to mem
@@ -69,7 +69,6 @@ def stop():
         result = jsonify({'bot_status': 'Error', 'error': f'{e}'})
     return result
 
-
 # @app.route('/get_preferences', methods=['GET'])
 # @cross_origin()
 # def get_preferences():
@@ -92,6 +91,43 @@ def stop():
 #     return result
 
 
+@app.route('/get_history', methods=['GET'])
+@cross_origin()
+def get_history():
+    """
+    http://127.0.0.1:5000/get_history
+    """
+    try:
+        history = mem_get_history()
+        if history:
+            result = jsonify({'history': history})
+        else:
+            result = jsonify({'history': {}})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
+        result = jsonify({'success': 'false', 'error': f'{e}', 'history': {}})
+    return result
+
+
+@app.route('/clear_history', methods=['GET'])
+@cross_origin()
+def clear_history():
+    """
+    http://127.0.0.1:5000/clear_history
+    """
+    try:
+        mem_set_history({})
+        history = mem_get_history()
+        if history:
+            result = jsonify({'history': history})
+        else:
+            result = jsonify({'history': {}})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
+        result = jsonify({'success': 'false', 'error': f'{e}', 'history': {}})
+    return result
+
+
 @app.route('/get_balance', methods=['GET'])
 @cross_origin()
 def get_balance():
@@ -105,14 +141,6 @@ def get_balance():
             result = jsonify({'balance': balance})
         else:
             result = jsonify({'success': 'false', 'error': f'mem_get_balance: None', 'balance': {}})
-            # settings = mem_get_settings()
-            # if settings:
-            #     rest = RestBinanceSpot(settings['api_key'], settings['api_secret'])
-            #     balance = rest.get_all_balances()
-            #     balance = dict((a, float(v)) for a, v in balance.items() if a == 'USDT' or a == 'BTC')
-            #     result = jsonify({'balance': balance})
-            # else:
-            #     result = jsonify({'success': 'false', 'error': f'mem_get_settings: None', 'balance': {}})
     except Exception as e:
         log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
         result = jsonify({'success': 'false', 'error': f'{e}', 'balance': {}})

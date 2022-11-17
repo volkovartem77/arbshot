@@ -43,9 +43,9 @@ class Monitoring(Calculation, Trading):
             if best:
                 self.log(f"NEW ARBITRAGE {'{:.4f}'.format(best[2])}%", GENERAL_LOG, best[0])
                 if self.Params.Trading:
-                    self.execute(best)
-                    self.log(f"GetSpreadSpeed={self.GetSpreadSpeed} CalcSpreadSpeed={self.CalcSpreadSpeed}",
-                             GENERAL_LOG, best[0])
+                    self.execute(best, self.GetSpreadSpeed, self.CalcSpreadSpeed)
+                    # self.log(f"GetSpreadSpeed={self.GetSpreadSpeed} CalcSpreadSpeed={self.CalcSpreadSpeed}",
+                    #          GENERAL_LOG, best[0])
 
 
 if __name__ == '__main__':

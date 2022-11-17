@@ -3,12 +3,14 @@ import time
 import traceback
 from decimal import Decimal
 
+import simplejson
 from pynats import NATSClient
 
 from config import GENERAL_LOG, SYMBOLS_INFO, ORDER_SIDE_BUY, ORDER_STATUS_FILLED, ORDER_SIDE_SELL
 from models import Params
 from rest.restBinanceSpot import RestBinanceSpot
-from utils import mem_get_balance, quote_to_base, decimal, round_up, round_down, time_diff_ms, datetime_str_ms, log
+from utils import mem_get_balance, quote_to_base, decimal, round_up, round_down, time_diff_ms, datetime_str_ms, log, \
+    datetime_str, mem_add_raw_stats, make_chain_id, make_client_order_id
 
 
 class Trading:
@@ -31,6 +33,26 @@ class Trading:
         except BrokenPipeError:
             self.NATS.connect()
             self.NATS.publish(subject=module, payload=payload.encode())
+
+    @staticmethod
+    def raw_stat(arb, size_usdt, efficiency, order_1, order_2, order_3, placing_speed_1, placing_speed_2,
+                 placing_speed_3, get_spread_speed, calc_spread_speed):
+        chain_id = make_chain_id()
+        payload = simplejson.dumps({
+            'datetime': datetime_str(),
+            'arb': arb,
+            'size_usdt': size_usdt,
+            'efficiency': efficiency,
+            'order_1': order_1['clientOrderId'],
+            'order_2': order_2['clientOrderId'],
+            'order_3': order_3['clientOrderId'],
+            'placing_speed_1': placing_speed_1,
+            'placing_speed_2': placing_speed_2,
+            'placing_speed_3': placing_speed_3,
+            'get_spread_speed': get_spread_speed,
+            'calc_spread_speed': calc_spread_speed
+        })
+        mem_add_raw_stats(chain_id, payload)
 
     @staticmethod
     def price_to_precision(symbol, price: Decimal):
@@ -59,25 +81,27 @@ class Trading:
 
     def place_limit_order(self, symbol, amount, price, side, base):
         self.log(f"Send LIMIT {symbol} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
+        client_order_id = make_client_order_id()
         t = time.time()
-        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC')
+        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC', client_order_id=client_order_id)
         placing_speed = time_diff_ms(t)
-        self.log(f"Order {order['orderId']} {order['type']} {order['symbol']} {order['side']} "
+        self.log(f"Order {order['clientOrderId']} {order['type']} {order['symbol']} {order['side']} "
                  f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
-        self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed} ms TransactTime={order['transactTime']}",
+        self.log(f"Order {order['clientOrderId']} PlacingSpeed={placing_speed} ms TransactTime={order['transactTime']}",
                  GENERAL_LOG, 'INFO')
-        return order
+        return order, placing_speed
 
     def place_limit_fok_order(self, symbol, amount, price, side, base):
         self.log(f"Send LIMIT {symbol} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
+        client_order_id = make_client_order_id()
         t = time.time()
-        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK')
+        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK', client_order_id=client_order_id)
         placing_speed = time_diff_ms(t)
-        self.log(f"Order {order['orderId']} {order['type']} {order['symbol']} {order['side']} "
+        self.log(f"Order {order['clientOrderId']} {order['type']} {order['symbol']} {order['side']} "
                  f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
-        self.log(f"Order {order['orderId']} PlacingSpeed={placing_speed} ms TransactTime={order['transactTime']}",
+        self.log(f"Order {order['clientOrderId']} PlacingSpeed={placing_speed} ms TransactTime={order['transactTime']}",
                  GENERAL_LOG, 'INFO')
-        return order
+        return order, placing_speed
 
     async def place_limit_order_async(self, symbol, amount, price, side, base):
         loop = asyncio.get_event_loop()
@@ -90,11 +114,11 @@ class Trading:
 
             order_1 = await task_1
             order_2 = await task_2
-            return order_1, order_2
+            return order_1[0], order_2[0], order_1[1], order_2[1]
 
         return asyncio.run(place())
 
-    def execute(self, chain):
+    def execute(self, chain, get_spread_speed, calc_spread_speed):
         try:
             arb = chain[0]
             forward = chain[1]
@@ -106,7 +130,7 @@ class Trading:
             price_2 = decimal(chain[7])
             price_3 = decimal(chain[8])
             max_amount_token = decimal(chain[9])
-            max_amount_btc = decimal(chain[10])
+            # max_amount_btc = decimal(chain[10])
             fee = decimal(1 - (self.TakerFee / 100))
 
             # Update balance
@@ -117,19 +141,19 @@ class Trading:
                 amount_token = self.get_amount_token(symbol_1, price_1)
                 expected_amount_btc = amount_token * price_2
                 if amount_token == 0:
-                    self.log(f"SKIPPED Not enough balance USDT", GENERAL_LOG, arb)
+                    # self.log(f"SKIPPED Not enough balance USDT", GENERAL_LOG, arb)
                     return
                 if expected_amount_btc > self.Balance['BTC']:
-                    self.log(f"SKIPPED Not enough balance BTC", GENERAL_LOG, arb)
+                    # self.log(f"SKIPPED Not enough balance BTC", GENERAL_LOG, arb)
                     return
                 if self.amount_to_precision(symbol_1, max_amount_token, price_1) == 0:
-                    self.log(f"SKIPPED Amount in orderbook is too small", GENERAL_LOG, arb)
+                    # self.log(f"SKIPPED Amount in orderbook is too small", GENERAL_LOG, arb)
                     return
 
                 # Step 1: Place LIMIT (FOK) BUY TOKEN/USDT
                 token = SYMBOLS_INFO[symbol_1]['base']
                 amount_token = min(amount_token, max_amount_token)
-                order_1 = self.place_limit_fok_order(symbol_1, amount_token, price_1, ORDER_SIDE_BUY, token)
+                order_1, p_speed_1 = self.place_limit_fok_order(symbol_1, amount_token, price_1, ORDER_SIDE_BUY, token)
                 if order_1['status'] == ORDER_STATUS_FILLED:
                     amount_spent_usdt = decimal(order_1['cummulativeQuoteQty'])
                     commission_token = sum([decimal(fill['commission']) for fill in order_1['fills']])
@@ -142,9 +166,12 @@ class Trading:
                     params2 = (symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, 'BTC')
 
                     # Step 2: Place LIMIT LIMIT (GTC) TOKEN/BTC BTC/USDT
-                    order_2, order_3 = self.place_orders_async(params1, params2)
+                    order_2, order_3, p_speed_2, p_speed_3 = self.place_orders_async(params1, params2)
                     self.log(f"ARBITRAGE HOLDING TradeSize {amount_spent_usdt} USDT", GENERAL_LOG, arb)
-                    # todo: -> to stats
+
+                    # Statistic
+                    self.raw_stat(arb, amount_spent_usdt, efficiency, order_1, order_2, order_3, p_speed_1, p_speed_2,
+                                  p_speed_3, get_spread_speed, calc_spread_speed)
                 else:
                     self.log(f"ARBITRAGE CANCELLED", GENERAL_LOG, arb)
             else:

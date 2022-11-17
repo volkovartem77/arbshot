@@ -48,7 +48,10 @@ MEMORY_CACHE = Client('127.0.0.1:11211', no_delay=True)
 MEMORY_CACHE_LOG = 'memory_cache'
 MEM_SETTINGS = 'settings'
 MEM_BALANCE = 'balance'
+MEM_ORDER = 'order'
 MEM_BOT_STATUS = 'bot_status'
+MEM_RAW_STATS = 'raw_stats'
+MEM_HISTORY = 'history'
 MEM_LOG = 'log'
 
 SYMBOLS = [s['symbol'] for s in get_symbols()['symbols']]
