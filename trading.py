@@ -181,7 +181,7 @@ class Trading:
                 # Step 1: Place LIMIT (FOK) BUY TOKEN/USDT
                 token = SYMBOLS_INFO[symbol_1]['base']
                 amount_token = min(amount_token, max_amount_token)
-                balance_token_remain = self.Balance[token]
+                balance_token_remain = self.Balance[token] if token in self.Balance else 0
                 balance_btc_remain = self.Balance['BTC']
                 order_1, p_speed_1 = self.place_limit_fok_order(symbol_1, amount_token, price_1, ORDER_SIDE_BUY, token)
                 if order_1['status'] == ORDER_STATUS_FILLED:

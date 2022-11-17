@@ -1,3 +1,4 @@
+import time
 import traceback
 
 from flask import Flask, jsonify
@@ -47,6 +48,7 @@ def start():
     try:
         if start_bot():
             mem_set_bot_status("Active")
+        time.sleep(2)
         result = jsonify({'bot_status': str(mem_get_bot_status()), 'error': ''})
     except Exception as e:
         log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
@@ -63,6 +65,7 @@ def stop():
     try:
         if stop_bot():
             mem_set_bot_status("Stopped")
+        time.sleep(2)
         result = jsonify({'bot_status': str(mem_get_bot_status()), 'error': ''})
     except Exception as e:
         log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
