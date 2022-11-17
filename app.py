@@ -5,7 +5,7 @@ from flask_cors import cross_origin, CORS
 
 from config import GENERAL_LOG, DEFAULT_SETTINGS
 from utils import log, mem_get_settings, mem_set_settings, mem_get_log, mem_set_bot_status, mem_get_bot_status, \
-    mem_get_balance, mem_get_history, mem_set_history
+    mem_get_balance, mem_get_history, mem_set_history, mem_set_raw_stats
 from utils_app import start_bot, stop_bot, get_supervisor_status
 
 # Load default setting to mem
@@ -116,6 +116,7 @@ def clear_history():
     http://127.0.0.1:5000/clear_history
     """
     try:
+        mem_set_raw_stats({})
         mem_set_history({})
         history = mem_get_history()
         if history:
