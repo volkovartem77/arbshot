@@ -21,10 +21,10 @@ async def on_message(msg):
         if 'e' in msg:
             # Update open orders
             if msg['e'] == 'executionReport':
-                log(f"{msg}", log_file_name, 'TEST')
+                # log(f"{msg}", log_file_name, 'TEST')
 
                 if msg['o'] == 'LIMIT':
-                    client_order_id = msg['c']
+                    client_order_id = msg['c'] if msg['C'] == '' else msg['C']
                     if 'arb_' in client_order_id:
                         status = msg['X']
                         if status in [ORDER_STATUS_NEW, ORDER_STATUS_FILLED, ORDER_STATUS_CANCELED]:
