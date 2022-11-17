@@ -62,3 +62,11 @@ supervisorctl start streamBinanceSpot
 supervisorctl status
 ```
 
+### Time test
+
+```
+cd ~/arbshot; . venv/bin/activate
+python3 time_test.py
+deactivate
+```
+
