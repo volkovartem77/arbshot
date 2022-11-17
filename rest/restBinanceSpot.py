@@ -15,7 +15,7 @@ def exception_handler(func):
         try:
             return func(*args, **kwargs)
         except BinanceAPIException as e:
-            log(e.message, GENERAL_LOG, f'INFO')
+            log(e.message, GENERAL_LOG, f'INFO', to_mem=True)
             if e.message == 'Account has insufficient balance for requested action.':
                 raise NoBalanceException
             elif e.message == 'Unknown order sent.':
@@ -27,10 +27,10 @@ def exception_handler(func):
             elif 'Timestamp for this request is outside of the recvWindow' in e.message:
                 raise TimestampError
         except requests.exceptions.ConnectionError:
-            log(f'Connection Error', GENERAL_LOG)
+            log(f'Connection Error', GENERAL_LOG, to_mem=True)
             raise NoConnectionException
         except requests.exceptions.ReadTimeout:
-            log(f'Connection Error', GENERAL_LOG)
+            log(f'Connection Error', GENERAL_LOG, to_mem=True)
             raise NoConnectionException
     return wrapper
 

@@ -135,7 +135,6 @@ class Trading:
 
             # Update balance
             self.Balance = mem_get_balance()
-            self.log(f"Balance now {self.Balance['USDT']} USDT  {self.Balance['BTC']} BTC", GENERAL_LOG, 'INFO')
 
             if forward:
                 amount_token = self.get_amount_token(symbol_1, price_1)
@@ -149,6 +148,8 @@ class Trading:
                 if self.amount_to_precision(symbol_1, max_amount_token, price_1) == 0:
                     # self.log(f"SKIPPED Amount in orderbook is too small", GENERAL_LOG, arb)
                     return
+
+                self.log(f"Balance now {self.Balance['USDT']} USDT  {self.Balance['BTC']} BTC", GENERAL_LOG, 'INFO')
 
                 # Step 1: Place LIMIT (FOK) BUY TOKEN/USDT
                 token = SYMBOLS_INFO[symbol_1]['base']
