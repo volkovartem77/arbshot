@@ -23,6 +23,7 @@ def run():
                 order_1 = mem_get_order(raw_stat['order_1'])
                 order_2 = mem_get_order(raw_stat['order_2'])
                 order_3 = mem_get_order(raw_stat['order_3'])
+                timestamp = raw_stat['timestamp']
 
                 if order_1 and order_2 and order_3:
                     statuses = [order_1['status'], order_2['status'], order_3['status']]
@@ -47,7 +48,8 @@ def run():
                         'size_usdt': size_usdt,
                         'status': chain_status,
                         'diff': '{:.4f}'.format(raw_stat['efficiency']),
-                        'profit_usdt': profit_usdt
+                        'profit_usdt': profit_usdt,
+                        'timestamp': timestamp
                     })
 
 

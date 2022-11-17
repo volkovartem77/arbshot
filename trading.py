@@ -10,7 +10,7 @@ from config import GENERAL_LOG, SYMBOLS_INFO, ORDER_SIDE_BUY, ORDER_STATUS_FILLE
 from models import Params
 from rest.restBinanceSpot import RestBinanceSpot
 from utils import mem_get_balance, quote_to_base, decimal, round_up, round_down, time_diff_ms, datetime_str_ms, log, \
-    datetime_str, mem_add_raw_stats, make_chain_id, make_client_order_id
+    datetime_str, mem_add_raw_stats, make_chain_id, make_client_order_id, time_now_mcs
 
 
 class Trading:
@@ -50,7 +50,8 @@ class Trading:
             'placing_speed_2': placing_speed_2,
             'placing_speed_3': placing_speed_3,
             'get_spread_speed': get_spread_speed,
-            'calc_spread_speed': calc_spread_speed
+            'calc_spread_speed': calc_spread_speed,
+            'timestamp': time_now_mcs()
         })
         mem_add_raw_stats(chain_id, payload)
 
