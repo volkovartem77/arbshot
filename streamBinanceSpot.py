@@ -16,7 +16,7 @@ from utils import mem_set_balance, mem_get_settings, log, time_now_ms, mem_get_b
 async def on_message(msg):
     try:
         msg = simplejson.loads(msg)
-        print(time.time(), msg)
+        # print(time.time(), msg)
 
         if 'e' in msg:
             # Update open orders
