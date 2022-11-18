@@ -9,9 +9,9 @@ import time
 from operator import itemgetter
 from urllib.parse import urlencode
 
-from helpers import interval_to_milliseconds, convert_ts_str
-from exceptions import BinanceAPIException, BinanceRequestException, NotImplementedException
-from enums import HistoricalKlinesType
+from binance.helpers import interval_to_milliseconds, convert_ts_str
+from binance.exceptions import BinanceAPIException, BinanceRequestException, NotImplementedException
+from binance.enums import HistoricalKlinesType
 
 
 class BaseClient:
