@@ -17,7 +17,6 @@ MarkupSafe==2.1.1
 multidict==6.0.2
 nats-python==0.8.0
 pymemcache==4.0.0
-python-binance==1.0.16
 python-dateutil==2.8.2
 pytz==2022.6
 pytz-deprecation-shim==0.1.0.post0
