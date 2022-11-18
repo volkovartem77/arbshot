@@ -4,7 +4,8 @@
     "api_secret": "UM19eQXyA3pTzMIifZk3V0uLAXOQDPoug7ZRB1coMiGLApLwYbjF93LCB0KwwIAr",
     "taker_fee": 0.1,
     "min_difference": 0.25,
-    "order_amount_prc": 90,
+    "order_amount_prc": 100,
+    "amount_btc_lock": 0,
     "forward": true,
     "backward": false,
     "trading": true

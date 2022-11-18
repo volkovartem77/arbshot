@@ -6,6 +6,7 @@ class Params:
         self.TakerFee = float(params['taker_fee'])
         self.MinDifference = float(params['min_difference'])
         self.OrderAmountPrc = float(params['order_amount_prc'])
+        self.AmountBTCLock = float(params['amount_btc_lock'])
         self.Forward = bool(params['forward'])
         self.Backward = bool(params['backward'])
         self.Trading = bool(params['trading'])
@@ -21,6 +22,8 @@ class Params:
             self.MinDifference = float(params['min_difference'])
         if 'order_amount_prc' in params:
             self.OrderAmountPrc = float(params['order_amount_prc'])
+        if 'amount_btc_lock' in params:
+            self.AmountBTCLock = float(params['amount_btc_lock'])
         if 'forward' in params:
             self.Forward = bool(params['forward'])
         if 'backward' in params:
@@ -35,7 +38,8 @@ class Params:
             "taker_fee": self.TakerFee,
             "min_difference": self.MinDifference,
             "order_amount_prc": self.OrderAmountPrc,
-            "trade_forward": self.Forward,
-            "trade_backward": self.Backward,
+            "amount_btc_lock": self.AmountBTCLock,
+            "forward": self.Forward,
+            "backward": self.Backward,
             "trading": self.Trading
         }
