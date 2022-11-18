@@ -69,6 +69,7 @@ def stop():
         result = jsonify({'bot_status': 'Error', 'error': f'{e}'})
     return result
 
+# todo: preferences
 # @app.route('/get_preferences', methods=['GET'])
 # @cross_origin()
 # def get_preferences():

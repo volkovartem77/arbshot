@@ -100,11 +100,21 @@ class Trading:
         amount_btc = self.amount_to_precision(symbol, quote_to_base(amount_usdt, price), price)
         return amount_btc
 
-    def get_amount_token(self, symbol, price):
+    def get_amount_token(self, symbol_1, symbol_2, price_1, price_2, fee, token, max_amount_token):
         balance_usdt = self.Balance['USDT']
+        balance_btc = self.Balance['BTC']
+        balance_token_remain = self.Balance[token] if token in self.Balance else 0
+
         amount_usdt = balance_usdt * decimal(self.OrderAmountPrc / 100)
-        amount_token = self.amount_to_precision(symbol, quote_to_base(amount_usdt, price), price)
-        return amount_token
+        amount_token = quote_to_base(amount_usdt, price_1)
+        # amount_token = min(amount_token, max_amount_token)  # todo rm
+
+        expected_amount_btc = amount_token * price_2
+        if expected_amount_btc > balance_btc:
+            amount_token = balance_btc / price_2
+
+        amount_token = self.amount_to_precision(symbol_1, amount_token, price_1)
+        return amount_token, expected_amount_btc
 
     def place_limit_order(self, symbol, amount, price, side, base):
         self.log(f"Send LIMIT {symbol} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
@@ -159,12 +169,13 @@ class Trading:
             max_amount_token = decimal(chain[9])
             # max_amount_btc = decimal(chain[10])
             fee = decimal(1 - (self.TakerFee / 100))
+            token = SYMBOLS_INFO[symbol_1]['base']
 
             # Update balance
             self.Balance = mem_get_balance()
 
             if forward:
-                amount_token = self.get_amount_token(symbol_1, price_1)
+                amount_token = self.get_amount_token(symbol_1, symbol_2, price_1, price_2, fee, token, max_amount_token)
                 expected_amount_btc = amount_token * price_2
                 if amount_token == 0:
                     # self.log(f"SKIPPED Not enough balance USDT", GENERAL_LOG, arb)
@@ -179,8 +190,6 @@ class Trading:
                 self.log(f"Balance now {self.Balance['USDT']} USDT  {self.Balance['BTC']} BTC", GENERAL_LOG, 'INFO')
 
                 # Step 1: Place LIMIT (FOK) BUY TOKEN/USDT
-                token = SYMBOLS_INFO[symbol_1]['base']
-                amount_token = min(amount_token, max_amount_token)
                 balance_token_remain = self.Balance[token] if token in self.Balance else 0
                 balance_btc_remain = self.Balance['BTC']
                 order_1, p_speed_1 = self.place_limit_fok_order(symbol_1, amount_token, price_1, ORDER_SIDE_BUY, token)
