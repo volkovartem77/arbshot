@@ -7,6 +7,7 @@ import simplejson
 from pynats import NATSClient
 
 from config import GENERAL_LOG, SYMBOLS_INFO, ORDER_SIDE_BUY, ORDER_STATUS_FILLED, ORDER_SIDE_SELL
+from exceptions import TimestampError
 from models import Params
 from rest.restBinanceSpot import RestBinanceSpot
 from utils import mem_get_balance, quote_to_base, decimal, round_up, round_down, time_diff_ms, datetime_str_ms, log, \
@@ -19,6 +20,7 @@ class Trading:
         self.OrderAmountPrc = params.OrderAmountPrc
         self.TakerFee = params.TakerFee
         self.AmountBTCLock = params.AmountBTCLock
+        self.RecvWindow = params.RecvWindow
 
         self.Balance = {}
 
@@ -121,7 +123,8 @@ class Trading:
         self.log(f"Send LIMIT {symbol} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
         client_order_id = make_client_order_id()
         t = time.time()
-        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC', client_order_id=client_order_id)
+        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC', client_order_id=client_order_id,
+                                      recv_window=self.RecvWindow)
         placing_speed = time_diff_ms(t)
         self.log(f"Order {order['clientOrderId'][:14]} {order['type']} {order['symbol']} {order['side']} "
                  f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
@@ -133,7 +136,8 @@ class Trading:
         self.log(f"Send LIMIT {symbol} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
         client_order_id = make_client_order_id()
         t = time.time()
-        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK', client_order_id=client_order_id)
+        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK', client_order_id=client_order_id,
+                                      recv_window=self.RecvWindow)
         placing_speed = time_diff_ms(t)
         self.log(f"Order {order['clientOrderId'][:14]} {order['type']} {order['symbol']} {order['side']} "
                  f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
@@ -185,37 +189,44 @@ class Trading:
                 # Step 1: Place LIMIT (FOK) BUY TOKEN/USDT
                 balance_token_remain = self.Balance[token] if token in self.Balance else 0
                 balance_btc_remain = self.Balance['BTC']
-                order_1, p_speed_1 = self.place_limit_fok_order(symbol_1, amount_token, price_1, ORDER_SIDE_BUY, token)
-                if order_1['status'] == ORDER_STATUS_FILLED:
-                    amount_spent_usdt = decimal(order_1['cummulativeQuoteQty'])
-                    commission_token = sum([decimal(fill['commission']) for fill in order_1['fills']])
-                    amount_received_token = amount_token - commission_token
-                    amount_received_token = self.amount_to_precision_2(symbol_2, amount_received_token, price_2,
-                                                                       balance_token_remain)
-                    if amount_received_token == 0:
-                        self.log(f"ARBITRAGE BROKEN {amount_token - commission_token} {token} left", GENERAL_LOG, arb)
-                        return
-                    params1 = (symbol_2, amount_received_token, price_2, ORDER_SIDE_SELL, token)
+                try:
+                    order_1, p_speed_1 = self.place_limit_fok_order(symbol_1, amount_token, price_1,
+                                                                    ORDER_SIDE_BUY, token)
+                    if order_1['status'] == ORDER_STATUS_FILLED:
+                        amount_spent_usdt = decimal(order_1['cummulativeQuoteQty'])
+                        commission_token = sum([decimal(fill['commission']) for fill in order_1['fills']])
+                        amount_received_token = amount_token - commission_token
+                        amount_received_token = self.amount_to_precision_2(symbol_2, amount_received_token, price_2,
+                                                                           balance_token_remain)
+                        if amount_received_token == 0:
+                            self.log(f"ARBITRAGE BROKEN {amount_token - commission_token} {token} left",
+                                     GENERAL_LOG, arb)
+                            return
+                        params1 = (symbol_2, amount_received_token, price_2, ORDER_SIDE_SELL, token)
 
-                    amount_received_btc = amount_received_token * price_2 * fee
-                    amount_received_btc = self.amount_to_precision_3(symbol_3, amount_received_btc, price_3,
-                                                                     balance_btc_remain)
-                    if amount_received_btc == 0:
-                        self.log(f"ARBITRAGE BROKEN {amount_received_token * price_2 * fee} BTC left", GENERAL_LOG, arb)
-                        return
-                    params2 = (symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, 'BTC')
+                        amount_received_btc = amount_received_token * price_2 * fee
+                        amount_received_btc = self.amount_to_precision_3(symbol_3, amount_received_btc, price_3,
+                                                                         balance_btc_remain)
+                        if amount_received_btc == 0:
+                            self.log(f"ARBITRAGE BROKEN {amount_received_token * price_2 * fee} BTC left",
+                                     GENERAL_LOG, arb)
+                            return
+                        params2 = (symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, 'BTC')
 
-                    # Step 2: Place LIMIT LIMIT (GTC) TOKEN/BTC BTC/USDT
-                    order_2, order_3, p_speed_2, p_speed_3 = self.place_orders_async(params1, params2)
-                    self.log(f"ARBITRAGE HOLDING TradeSize {amount_spent_usdt} USDT", GENERAL_LOG, arb)
+                        # Step 2: Place LIMIT LIMIT (GTC) TOKEN/BTC BTC/USDT
+                        order_2, order_3, p_speed_2, p_speed_3 = self.place_orders_async(params1, params2)
+                        self.log(f"ARBITRAGE HOLDING TradeSize {amount_spent_usdt} USDT", GENERAL_LOG, arb)
 
-                    # Statistic
-                    self.raw_stat(arb, amount_spent_usdt, efficiency, order_1, order_2, order_3, p_speed_1, p_speed_2,
-                                  p_speed_3, get_spread_speed, calc_spread_speed)
-                else:
-                    self.log(f"ARBITRAGE CANCELLED", GENERAL_LOG, arb)
+                        # Statistic
+                        self.raw_stat(arb, amount_spent_usdt, efficiency, order_1, order_2, order_3, p_speed_1,
+                                      p_speed_2, p_speed_3, get_spread_speed, calc_spread_speed)
+                    else:
+                        self.log(f"ARBITRAGE CANCELLED", GENERAL_LOG, arb)
+                except TimestampError:
+                    self.log(f"ARBITRAGE CANCELLED recvWindow={self.RecvWindow}", GENERAL_LOG, arb)
             else:
                 self.log(f"Backward not implemented", GENERAL_LOG, arb)
 
-        except Exception:
+        except Exception as e:
+            log(str(e), GENERAL_LOG, 'ERROR', to_mem=True)
             log(traceback.format_exc(), GENERAL_LOG, 'ERROR', to_mem=True)

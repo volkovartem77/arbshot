@@ -63,7 +63,7 @@ class RestBinanceSpot:
         return dict((x['asset'], Decimal(str(x['free']))) for x in account["balances"] if Decimal(str(x['free'])) > 0)
 
     @exception_handler
-    def place_limit(self, symbol, amount, price, side, time_in_force='GTC', client_order_id=None):
+    def place_limit(self, symbol, amount, price, side, time_in_force='GTC', client_order_id=None, recv_window=9999):
         return self.Client.create_order(
             symbol=symbol.upper(),
             side=side,
@@ -72,7 +72,7 @@ class RestBinanceSpot:
             type='LIMIT',
             timeInForce=time_in_force,
             newClientOrderId=client_order_id,
-            recvWindow=9999)
+            recvWindow=recv_window)
 
     @exception_handler
     def place_market(self, symbol, amount, side, client_order_id=None):

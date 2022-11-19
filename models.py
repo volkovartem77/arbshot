@@ -7,6 +7,7 @@ class Params:
         self.MinDifference = float(params['min_difference'])
         self.OrderAmountPrc = float(params['order_amount_prc'])
         self.AmountBTCLock = float(params['amount_btc_lock'])
+        self.RecvWindow = int(params['recv_window'])
         self.Forward = bool(params['forward'])
         self.Backward = bool(params['backward'])
         self.Trading = bool(params['trading'])
@@ -24,6 +25,8 @@ class Params:
             self.OrderAmountPrc = float(params['order_amount_prc'])
         if 'amount_btc_lock' in params:
             self.AmountBTCLock = float(params['amount_btc_lock'])
+        if 'recv_window' in params:
+            self.RecvWindow = int(params['recv_window'])
         if 'forward' in params:
             self.Forward = bool(params['forward'])
         if 'backward' in params:
@@ -39,6 +42,7 @@ class Params:
             "min_difference": self.MinDifference,
             "order_amount_prc": self.OrderAmountPrc,
             "amount_btc_lock": self.AmountBTCLock,
+            "recv_window": self.RecvWindow,
             "forward": self.Forward,
             "backward": self.Backward,
             "trading": self.Trading
