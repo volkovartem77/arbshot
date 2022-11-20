@@ -123,8 +123,7 @@ class Trading:
         self.log(f"Send LIMIT {symbol} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
         client_order_id = make_client_order_id()
         t = time.time()
-        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC', client_order_id=client_order_id,
-                                      recv_window=self.RecvWindow)
+        order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC', client_order_id=client_order_id)
         placing_speed = time_diff_ms(t)
         self.log(f"Order {order['clientOrderId'][:14]} {order['type']} {order['symbol']} {order['side']} "
                  f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
@@ -229,4 +228,5 @@ class Trading:
 
         except Exception as e:
             log(str(e), GENERAL_LOG, 'ERROR', to_mem=True)
+            log(str(chain), GENERAL_LOG, 'ERROR', to_mem=True)
             log(traceback.format_exc(), GENERAL_LOG, 'ERROR', to_mem=True)

@@ -2,8 +2,10 @@ import traceback
 
 import simplejson
 
-from config import GENERAL_LOG, ORDER_STATUS_NEW, ORDER_STATUS_CANCELED
-from utils import log, mem_get_raw_stats, mem_get_order, decimal, mem_remove_raw_stats, mem_rm_order, mem_add_history
+from config import GENERAL_LOG, ORDER_STATUS_NEW, ORDER_STATUS_CANCELED, ORDER_STATUS_FILLED
+from rest.restBinanceSpot import RestBinanceSpot
+from utils import log, mem_get_raw_stats, mem_get_order, decimal, mem_remove_raw_stats, mem_rm_order, mem_add_history, \
+    mem_get_settings
 
 
 def clear_orders(oid1, oid2, oid3):
@@ -12,7 +14,17 @@ def clear_orders(oid1, oid2, oid3):
     mem_rm_order(oid3)
 
 
+def place_market(rest, symbol, amount, side):
+    # TODO:
+    #  order = rest.place_market(symbol, amount, side)
+    #  return order['cummulativeQuoteQty']
+    return 1
+
+
 def run():
+    mem_settings = mem_get_settings()
+    rest = RestBinanceSpot(mem_settings['api_key'], mem_settings['api_secret'])
+
     log(f"Statistic started", GENERAL_LOG, 'INFO', to_mem=True)
 
     while True:
@@ -36,6 +48,16 @@ def run():
                         chain_status = 'CANCELED'
                         mem_remove_raw_stats(chain_id)
                         clear_orders(raw_stat['order_1'], raw_stat['order_2'], raw_stat['order_3'])
+
+                        # # Execute at Market
+                        # if order_2['status'] is ORDER_STATUS_CANCELED and order_3['status'] is ORDER_STATUS_FILLED:
+                        #     result_2 = place_market(rest, order_2['symbol'], order_2['amount'], order_2['side'])
+                        #     amount_btc_received = decimal(result_2)
+                        #
+                        #     # TODO:
+                        #     #  calc profit_usdt
+                        #
+                        #     # 52.84.150.36:443
                     else:
                         chain_status = 'COMPLETED'
                         profit_usdt = round(decimal(order_3['amount_received']) - size_usdt, 4)
