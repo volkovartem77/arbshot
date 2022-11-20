@@ -39,7 +39,7 @@ class Trading:
 
     @staticmethod
     def raw_stat(arb, size_usdt, efficiency, order_1, order_2, order_3, placing_speed_1, placing_speed_2,
-                 placing_speed_3, get_spread_speed, calc_spread_speed):
+                 placing_speed_3, amount_token_left, get_spread_speed, calc_spread_speed):
         chain_id = make_chain_id()
         payload = simplejson.dumps({
             'datetime': datetime_str(),
@@ -52,6 +52,7 @@ class Trading:
             'placing_speed_1': placing_speed_1,
             'placing_speed_2': placing_speed_2,
             'placing_speed_3': placing_speed_3,
+            'amount_token_left': amount_token_left,
             'get_spread_speed': get_spread_speed,
             'calc_spread_speed': calc_spread_speed,
             'timestamp': time_now_mcs()
@@ -116,7 +117,6 @@ class Trading:
 
         max_amount_token_from_btc = self.amount_to_precision(symbol_2, balance_btc / price_2, price_2)
         max_amount_token_from_btc = self.amount_to_precision(symbol_1, max_amount_token_from_btc, price_1)
-
         return min(amount_token, max_amount_token, max_amount_token_from_btc)
 
     def place_limit_order(self, symbol, amount, price, side, base):
@@ -195,19 +195,19 @@ class Trading:
                         amount_spent_usdt = decimal(order_1['cummulativeQuoteQty'])
                         commission_token = sum([decimal(fill['commission']) for fill in order_1['fills']])
                         amount_received_token = amount_token - commission_token
-                        amount_received_token = self.amount_to_precision_2(symbol_2, amount_received_token, price_2,
-                                                                           balance_token_remain)
-                        if amount_received_token == 0:
+                        amount_token_2 = self.amount_to_precision_2(symbol_2, amount_received_token, price_2,
+                                                                    balance_token_remain)
+                        if amount_token_2 == 0:
                             self.log(f"ARBITRAGE BROKEN {amount_token - commission_token} {token} left",
                                      GENERAL_LOG, arb)
                             return
-                        params1 = (symbol_2, amount_received_token, price_2, ORDER_SIDE_SELL, token)
+                        params1 = (symbol_2, amount_token_2, price_2, ORDER_SIDE_SELL, token)
 
-                        amount_received_btc = amount_received_token * price_2 * fee
+                        amount_received_btc = amount_token_2 * price_2 * fee
                         amount_received_btc = self.amount_to_precision_3(symbol_3, amount_received_btc, price_3,
                                                                          balance_btc_remain)
                         if amount_received_btc == 0:
-                            self.log(f"ARBITRAGE BROKEN {amount_received_token * price_2 * fee} BTC left",
+                            self.log(f"ARBITRAGE BROKEN {amount_token_2 * price_2 * fee} BTC left",
                                      GENERAL_LOG, arb)
                             return
                         params2 = (symbol_3, amount_received_btc, price_3, ORDER_SIDE_SELL, 'BTC')
@@ -217,8 +217,9 @@ class Trading:
                         self.log(f"ARBITRAGE HOLDING TradeSize {amount_spent_usdt} USDT", GENERAL_LOG, arb)
 
                         # Statistic
+                        amount_token_left = amount_received_token - amount_token_2
                         self.raw_stat(arb, amount_spent_usdt, efficiency, order_1, order_2, order_3, p_speed_1,
-                                      p_speed_2, p_speed_3, get_spread_speed, calc_spread_speed)
+                                      p_speed_2, p_speed_3, amount_token_left, get_spread_speed, calc_spread_speed)
                     else:
                         self.log(f"ARBITRAGE CANCELLED", GENERAL_LOG, arb)
                 except TimestampError:

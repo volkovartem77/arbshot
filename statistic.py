@@ -51,7 +51,7 @@ def run():
 
                         # # Execute at Market
                         # if order_2['status'] is ORDER_STATUS_CANCELED and order_3['status'] is ORDER_STATUS_FILLED:
-                        #     result_2 = place_market(rest, order_2['symbol'], order_2['amount'], order_2['side'])
+                        #     result_2 = place_market(rest, order_2['symbol'], decimal(order_2['amount']), order_2['side'])
                         #     amount_btc_received = decimal(result_2)
                         #
                         #     # TODO:
@@ -60,7 +60,11 @@ def run():
                         #     # 52.84.150.36:443
                     else:
                         chain_status = 'COMPLETED'
-                        profit_usdt = round(decimal(order_3['amount_received']) - size_usdt, 4)
+                        amount_token_left = decimal(raw_stat['amount_token_left'])
+                        amount_token_left_in_usdt = amount_token_left * decimal(order_1['price'])
+                        profit_usdt = decimal(order_3['amount_received']) - size_usdt
+                        profit_usdt = profit_usdt - amount_token_left_in_usdt
+                        profit_usdt = round(profit_usdt, 4)
                         mem_remove_raw_stats(chain_id)
                         clear_orders(raw_stat['order_1'], raw_stat['order_2'], raw_stat['order_3'])
 
