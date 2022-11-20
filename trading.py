@@ -89,7 +89,7 @@ class Trading:
         conv = decimal(SYMBOLS_INFO[symbol]['min_amount']) / price
         min_amount = round_up(conv, amount_precision)
 
-        balance_btc = amount + balance_btc_remain - decimal(self.AmountBTCLock)
+        balance_btc = balance_btc_remain - decimal(self.AmountBTCLock)
         my_amount = round_up(amount, amount_precision)
         if my_amount > balance_btc:
             my_amount = round_down(amount, amount_precision)
