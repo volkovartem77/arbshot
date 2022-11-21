@@ -2,7 +2,7 @@ import traceback
 
 import simplejson
 
-from config import GENERAL_LOG, ORDER_STATUS_NEW, ORDER_STATUS_CANCELED, ORDER_STATUS_FILLED
+from config import GENERAL_LOG, ORDER_STATUS_NEW, ORDER_STATUS_CANCELED, ORDER_STATUS_FILLED, ORDER_SIDE_SELL
 from rest.restBinanceSpot import RestBinanceSpot
 from utils import log, mem_get_raw_stats, mem_get_order, decimal, mem_remove_raw_stats, mem_rm_order, mem_add_history, \
     mem_get_settings
@@ -14,11 +14,11 @@ def clear_orders(oid1, oid2, oid3):
     mem_rm_order(oid3)
 
 
-def place_market(rest, symbol, amount, side):
-    # TODO:
-    #  order = rest.place_market(symbol, amount, side)
-    #  return order['cummulativeQuoteQty']
-    return 1
+def place_market_sell(rest, symbol, amount):
+    log(f"Place MARKET {symbol} SELL {amount}", 'test', 'TEST')
+    order = rest.place_market(symbol, amount, ORDER_SIDE_SELL)
+    log(f"Market order {order}", 'test', 'TEST')
+    return order
 
 
 def run():
@@ -51,15 +51,30 @@ def run():
                         mem_remove_raw_stats(chain_id)
                         clear_orders(raw_stat['order_1'], raw_stat['order_2'], raw_stat['order_3'])
 
-                        # # Execute at Market
-                        # if order_2['status'] is ORDER_STATUS_CANCELED and order_3['status'] is ORDER_STATUS_FILLED:
-                        #     result_2 = place_market(rest, order_2['symbol'], decimal(order_2['amount']), order_2['side'])
-                        #     amount_btc_received = decimal(result_2)
-                        #
-                        #     # TODO:
-                        #     #  calc profit_usdt
-                        #
-                        #     # 52.84.150.36:443
+                        # Execute at Market
+                        if order_2['status'] is ORDER_STATUS_CANCELED and order_3['status'] is ORDER_STATUS_FILLED:
+                            market_order = place_market_sell(rest, order_2['symbol'], decimal(order_2['amount']))
+                            amount_btc_received = decimal(market_order['cummulativeQuoteQty'])
+                            amount_usdt_received_1 = decimal(order_3['amount_received'])
+                            amount_usdt_received_2 = amount_btc_received * decimal(order_3['price'])
+                            amount_usdt_diff = amount_usdt_received_1 - amount_usdt_received_2
+
+                            amount_token_left = decimal(raw_stat['amount_token_left'])
+                            amount_token_left_in_usdt = amount_token_left * decimal(order_1['price'])
+                            profit_usdt = decimal(order_3['amount_received']) - size_usdt
+                            profit_usdt = profit_usdt - amount_token_left_in_usdt
+                            profit_usdt = profit_usdt - amount_usdt_diff
+                            profit_usdt = round(profit_usdt, 4)
+
+                            log(f"amount_btc_received={amount_btc_received}\n"
+                                f"amount_usdt_received_1={amount_usdt_received_1}\n"
+                                f"order_3_price={order_3['price']}\n"
+                                f"amount_usdt_received_2={amount_usdt_received_2}\n"
+                                f"amount_token_left={amount_token_left}\n"
+                                f"order_1_price={order_1['price']}\n"
+                                f"amount_token_left_in_usdt={amount_token_left_in_usdt}\n"
+                                f"profit_usdt={profit_usdt}",
+                                'test', 'TEST')
                     else:
                         chain_status = 'COMPLETED'
                         amount_token_left = decimal(raw_stat['amount_token_left'])
