@@ -52,7 +52,7 @@ def run():
                         clear_orders(raw_stat['order_1'], raw_stat['order_2'], raw_stat['order_3'])
 
                         # Execute at Market
-                        if order_2['status'] is ORDER_STATUS_CANCELED and order_3['status'] is ORDER_STATUS_FILLED:
+                        if order_2['status'] == ORDER_STATUS_CANCELED and order_3['status'] == ORDER_STATUS_FILLED:
                             market_order = place_market_sell(rest, order_2['symbol'], decimal(order_2['amount']))
                             amount_btc_received = decimal(market_order['cummulativeQuoteQty'])
                             amount_usdt_received_1 = decimal(order_3['amount_received'])
