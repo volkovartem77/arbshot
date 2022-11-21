@@ -50,6 +50,8 @@ def run():
                         chain_status = 'CANCELED'
                         mem_remove_raw_stats(chain_id)
                         clear_orders(raw_stat['order_1'], raw_stat['order_2'], raw_stat['order_3'])
+                        log(f"order_2['status']={order_2['status']}; order_3['status']={order_3['status']}",
+                            'test', 'INFO', to_mem=True)
 
                         # Execute at Market
                         if order_2['status'] == ORDER_STATUS_CANCELED and order_3['status'] == ORDER_STATUS_FILLED:
