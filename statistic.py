@@ -65,7 +65,7 @@ def run():
                         amount_token_left = decimal(raw_stat['amount_token_left'])
                         amount_token_left_in_usdt = amount_token_left * decimal(order_1['price'])
                         profit_usdt = decimal(order_3['amount_received']) - size_usdt
-                        # profit_usdt = profit_usdt - amount_token_left_in_usdt
+                        profit_usdt = profit_usdt - amount_token_left_in_usdt
                         profit_usdt = round(profit_usdt, 4)
                         mem_remove_raw_stats(chain_id)
                         clear_orders(raw_stat['order_1'], raw_stat['order_2'], raw_stat['order_3'])
