@@ -142,7 +142,7 @@ def get_balance():
             balance = dict((a, float(v)) for a, v in balance.items() if a == 'USDT' or a == 'BTC')
             settings = mem_get_settings()
             if settings:
-                btc_in_usdt = balance['BTC'] * float(settings['btc_hold_price'])
+                btc_in_usdt = round(balance['BTC'] * float(settings['btc_hold_price']), 8)
                 balance.update({"BTC(USDT)": btc_in_usdt})
             result = jsonify({'balance': balance})
         else:
