@@ -62,17 +62,21 @@ def format_preferences(data):
     if "api_secret" in data:
         result.update({"api_secret": str(data['api_secret'])})
     if "taker_fee" in data:
-        result.update({"taker_fee": decimal(data['taker_fee'])})
+        result.update({"taker_fee": float(data['taker_fee'])})
     if "min_difference" in data:
-        result.update({"min_difference": decimal(data['min_difference'])})
-    if "orderbook_deep" in data:
-        result.update({"orderbook_deep": int(data['orderbook_deep'])})
+        result.update({"min_difference": float(data['min_difference'])})
     if "order_amount_prc" in data:
-        result.update({"order_amount_prc": decimal(data['order_amount_prc'])})
-    if "timeout_filling" in data:
-        result.update({"timeout_filling": int(data['timeout_filling'])})
-    if "trade_forward" in data:
-        result.update({"trade_forward": bool(data['trade_forward'])})
-    if "trade_backward" in data:
-        result.update({"trade_backward": bool(data['trade_backward'])})
+        result.update({"order_amount_prc": float(data['order_amount_prc'])})
+    if "amount_btc_lock" in data:
+        result.update({"amount_btc_lock": float(data['amount_btc_lock'])})
+    if "btc_hold_price" in data:
+        result.update({"btc_hold_price": float(data['btc_hold_price'])})
+    if "recv_window" in data:
+        result.update({"recv_window": float(data['recv_window'])})
+    if "forward" in data:
+        result.update({"forward": bool(data['forward'])})
+    if "backward" in data:
+        result.update({"backward": bool(data['backward'])})
+    if "trading" in data:
+        result.update({"trading": bool(data['trading'])})
     return result

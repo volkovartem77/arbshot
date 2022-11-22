@@ -1,12 +1,13 @@
 import traceback
 
-from flask import Flask, jsonify
+import simplejson
+from flask import Flask, jsonify, request
 from flask_cors import cross_origin, CORS
 
 from config import GENERAL_LOG, DEFAULT_SETTINGS
 from utils import log, mem_get_settings, mem_set_settings, mem_get_log, mem_set_bot_status, mem_get_bot_status, \
     mem_get_balance, mem_get_history, mem_set_history, mem_set_raw_stats
-from utils_app import start_bot, stop_bot, get_supervisor_status
+from utils_app import start_bot, stop_bot, get_supervisor_status, format_preferences
 
 # Load default setting to mem
 if mem_get_settings() is None:
@@ -69,27 +70,27 @@ def stop():
         result = jsonify({'bot_status': 'Error', 'error': f'{e}'})
     return result
 
-# todo: preferences
-# @app.route('/get_preferences', methods=['GET'])
-# @cross_origin()
-# def get_preferences():
-#     """
-#     http://127.0.0.1:5000/get_preferences
-#     """
-#     try:
-#         preferences = mem_get_settings()
-#         if preferences:
-#             if 'api_key' in preferences:
-#                 preferences['api_key'] = ''
-#             if 'api_secret' in preferences:
-#                 preferences['api_secret'] = ''
-#             result = jsonify({'preferences': preferences})
-#         else:
-#             result = jsonify({'success': 'false', 'error': f'mem_get_settings: None'})
-#     except Exception as e:
-#         log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
-#         result = jsonify({'success': 'false', 'error': f'{e}'})
-#     return result
+
+@app.route('/get_preferences', methods=['GET'])
+@cross_origin()
+def get_preferences():
+    """
+    http://127.0.0.1:5000/get_preferences
+    """
+    try:
+        preferences = mem_get_settings()
+        if preferences:
+            if 'api_key' in preferences:
+                preferences['api_key'] = ''
+            if 'api_secret' in preferences:
+                preferences['api_secret'] = ''
+            result = jsonify({'preferences': preferences})
+        else:
+            result = jsonify({'success': 'false', 'error': f'mem_get_settings: None'})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
+        result = jsonify({'success': 'false', 'error': f'{e}'})
+    return result
 
 
 @app.route('/get_history', methods=['GET'])
@@ -139,12 +140,12 @@ def get_balance():
     try:
         balance = mem_get_balance()
         if balance:
-            balance = dict((a, float(v)) for a, v in balance.items() if a == 'USDT' or a == 'BTC')
+            _balance = dict((a, float(v)) for a, v in balance.items() if a == 'USDT' or a == 'BTC')
             settings = mem_get_settings()
             if settings:
-                btc_in_usdt = round(balance['BTC'] * float(settings['btc_hold_price']), 8)
+                btc_in_usdt = round(_balance['BTC'] * float(settings['btc_hold_price']), 8)
                 balance.update({"BTC(USDT)": btc_in_usdt})
-            result = jsonify({'balance': balance})
+            result = jsonify({'balance': _balance})
         else:
             result = jsonify({'success': 'false', 'error': f'mem_get_balance: None', 'balance': {}})
     except Exception as e:
@@ -186,52 +187,54 @@ def get_supervisor_processes():
     return result
 
 
-# @app.route('/set_preferences', methods=['POST'])
-# @cross_origin()
-# def set_preferences():
-#     """
-#         http://127.0.0.1:5000/set_preferences
-#         application/json
-#         {
-#             "api_key": "",
-#             "api_secret": "",
-#             "taker_fee": 0.1,
-#             "min_difference": -0.35,
-#             "orderbook_deep": 1,
-#             "order_amount_prc": 100,
-#             "timeout_filling": 1,
-#             "trade_forward": true,
-#             "trade_backward": true
-#           }
-#         }
-#     """
-#     if request.data:
-#         data = simplejson.loads(request.data)
-#         try:
-#             settings = mem_get_settings()
-#             if settings:
-#                 data = format_preferences(data)
-#                 if 'api_key' in data and data['api_key'] == '':
-#                     data['api_key'] = settings['api_key']
-#                 if 'api_secret' in data and data['api_secret'] == '':
-#                     data['api_secret'] = settings['api_secret']
-#
-#                 settings.update(data)
-#                 mem_set_settings(settings)
-#                 log(f"Setting saved", GENERAL_LOG, 'INFO', to_mem=True)
-#
-#                 settings = mem_get_settings()
-#                 if settings:
-#                     settings['api_key'] = ''
-#                     settings['api_secret'] = ''
-#                     result = jsonify({'preferences': settings})
-#                 else:
-#                     result = jsonify({'success': 'false', 'error': f'mem_get_settings2: None'})
-#             else:
-#                 result = jsonify({'success': 'false', 'error': f'mem_get_settings: None'})
-#         except Exception as e:
-#             log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
-#             result = jsonify({'success': 'false', 'error': f'{e}|type {type(e)}'})
-#     else:
-#         result = jsonify({'success': 'false', 'error': f'request.data: None'})
-#     return result
+@app.route('/set_preferences', methods=['POST'])
+@cross_origin()
+def set_preferences():
+    """
+        http://127.0.0.1:5000/set_preferences
+        application/json
+        {
+            "api_key": "",
+            "api_secret": "",
+            "taker_fee": 0.1,
+            "min_difference": 0.25,
+            "order_amount_prc": 100,
+            "amount_btc_lock": 0.0111,
+            "btc_hold_price": 16173.54,
+            "recv_window": 15,
+            "forward": true,
+            "backward": false,
+            "trading": true
+          }
+        }
+    """
+    if request.data:
+        data = simplejson.loads(request.data)
+        try:
+            settings = mem_get_settings()
+            if settings:
+                data = format_preferences(data)
+                if 'api_key' in data and data['api_key'] == '':
+                    data['api_key'] = settings['api_key']
+                if 'api_secret' in data and data['api_secret'] == '':
+                    data['api_secret'] = settings['api_secret']
+
+                settings.update(data)
+                mem_set_settings(settings)
+                log(f"Setting saved", GENERAL_LOG, 'INFO', to_mem=True)
+
+                settings = mem_get_settings()
+                if settings:
+                    settings['api_key'] = ''
+                    settings['api_secret'] = ''
+                    result = jsonify({'preferences': settings})
+                else:
+                    result = jsonify({'success': 'false', 'error': f'mem_get_settings2: None'})
+            else:
+                result = jsonify({'success': 'false', 'error': f'mem_get_settings: None'})
+        except Exception as e:
+            log(traceback.format_exc(), GENERAL_LOG, 'SERVER')
+            result = jsonify({'success': 'false', 'error': f'{e}|type {type(e)}'})
+    else:
+        result = jsonify({'success': 'false', 'error': f'request.data: None'})
+    return result
