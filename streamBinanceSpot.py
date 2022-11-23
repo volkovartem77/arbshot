@@ -5,7 +5,7 @@ import time
 import simplejson
 import websockets
 from requests import ReadTimeout
-from websockets.exceptions import ConnectionClosedError
+from websockets.exceptions import ConnectionClosedError, ConnectionClosedOK
 
 from config import STREAM_LOG, ORDER_SIDE_SELL, ORDER_STATUS_NEW, ORDER_STATUS_FILLED, ORDER_STATUS_CANCELED
 from exceptions import NoConnectionException
@@ -50,7 +50,7 @@ async def on_message(msg):
                         balance.update({balance_info['a']: balance_info['f']})
                     balance.update({'updateTime': time_now_ms()})
                     mem_set_balance(balance)
-                    log(f"Update balance {balance}", log_file_name, 'STREAM')
+                    # log(f"Update balance {balance}", log_file_name, 'STREAM')
 
     except Exception as e:
         log(f'stream: {e}', log_file_name, 'ERROR')
@@ -78,7 +78,7 @@ async def on_open(listen_key):
     balance = retrying(rest.get_all_balances, {}, ReadTimeout, 5, 2)
     balance.update({'updateTime': time_now_ms()})
     mem_set_balance(balance)
-    log(f"Update balance {balance}", log_file_name, 'STREAM')
+    # log(f"Update balance {balance}", log_file_name, 'STREAM')
 
 
 async def run():
@@ -93,7 +93,7 @@ async def run():
                 while True:
                     msg = await websocket.recv()
                     await on_message(msg)
-        except (ConnectionClosedError, NoConnectionException):
+        except (ConnectionClosedError, NoConnectionException, ConnectionClosedOK):
             log(f'stream: Connection closed. Reconnecting..', log_file_name, 'STREAM')
             time.sleep(1)
 
