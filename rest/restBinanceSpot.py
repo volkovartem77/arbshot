@@ -15,17 +15,20 @@ def exception_handler(func):
         try:
             return func(*args, **kwargs)
         except BinanceAPIException as e:
-            log(e.message, GENERAL_LOG, f'INFO', to_mem=True)
+            # log(e.message, GENERAL_LOG, f'INFO', to_mem=True)
             if e.message == 'Account has insufficient balance for requested action.':
                 raise NoBalanceException
             elif e.message == 'Unknown order sent.':
                 raise UnknownOrderException
             elif e.message == "Limit price can't be higher than":
+                log(e.message, GENERAL_LOG, f'INFO', to_mem=True)
                 raise LimitPriceException
             elif 'Invalid JSON error message from Binance' in e.message:
                 raise UnknownBinanceException(e.message)
             elif 'Timestamp for this request is outside of the recvWindow' in e.message:
                 raise TimestampError
+            else:
+                log(e.message, GENERAL_LOG, f'INFO', to_mem=True)
         except requests.exceptions.ConnectionError:
             log(f'Connection Error', GENERAL_LOG, to_mem=True)
             raise NoConnectionException

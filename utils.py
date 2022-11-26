@@ -287,6 +287,10 @@ def timestamp_to_date(timestamp):
     return str(datetime.utcfromtimestamp(timestamp))
 
 
+def timestamp_mcs_to_date(timestamp):
+    return str(datetime.utcfromtimestamp(timestamp / 1000000))
+
+
 def scientific_to_str(num):
     return format(num, 'f')
 

@@ -1,6 +1,5 @@
 import simplejson
 from pymemcache.client.base import Client
-from pynats import NATSClient
 
 PROJECT_PATH = '/home/artem/PycharmProjects/arbshot/'
 SUPERVISOR_PATH = '/etc/supervisor/conf.d/'
