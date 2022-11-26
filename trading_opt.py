@@ -150,8 +150,8 @@ class TradingOpt:
             task_gtc_1 = asyncio.create_task(self.place_limit_order_async(*params2))
             task_gtc_2 = asyncio.create_task(self.place_limit_order_async(*params2))
             task_gtc_3 = asyncio.create_task(self.place_limit_order_async(*params2))
-            task_gtc_4 = asyncio.create_task(self.place_limit_order_async(*params2))
-            task_gtc_5 = asyncio.create_task(self.place_limit_order_async(*params2))
+            # task_gtc_4 = asyncio.create_task(self.place_limit_order_async(*params2))
+            # task_gtc_5 = asyncio.create_task(self.place_limit_order_async(*params2))
 
             order_fok = await task_fok
             order_gtc_1 = await task_gtc_1
@@ -163,12 +163,12 @@ class TradingOpt:
             order_gtc_3 = await task_gtc_3
             if order_gtc_3:
                 return order_fok, order_gtc_3
-            order_gtc_4 = await task_gtc_4
-            if order_gtc_4:
-                return order_fok, order_gtc_4
-            order_gtc_5 = await task_gtc_5
-            if order_gtc_5:
-                return order_fok, order_gtc_5
+            # order_gtc_4 = await task_gtc_4
+            # if order_gtc_4:
+            #     return order_fok, order_gtc_4
+            # order_gtc_5 = await task_gtc_5
+            # if order_gtc_5:
+            #     return order_fok, order_gtc_5
             return order_fok, None
 
         return asyncio.run(place())
