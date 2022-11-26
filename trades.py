@@ -69,19 +69,3 @@ if __name__ == '__main__':
     except Exception as e:
         log(f"{str(e)}", GENERAL_LOG, 'ERROR', to_mem=True)
         log(traceback.format_exc(), GENERAL_LOG, 'ERROR', to_mem=True)
-
-# TODO:
-#  send_time | order_id | arb | time_in_force | symbol | side | amount (token) | price | status | PlacingSpeed | CreationTime| UpdateTime | ReceiveTime | HoldingTime
-#  11:19:11.543 | arb_2dbe21f576 | USDT-WRX-BTC-USDT | FOK | WRXUSDT | BUY | 126.2 WRX | 0.1594 | FILLED | 17.032 | 11:19:11.549 | 11:19:11.549 | 11:19:11.554 | 1d 14h 12m 26.074
-
-# raw_order = {
-#     'send_time',
-#     'arb',
-#     'time_in_force',
-#     'symbol',
-#     'side',
-#     'amount',
-#     'token',
-#     'status',
-#     'recv_time'
-# }
