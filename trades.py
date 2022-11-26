@@ -5,7 +5,7 @@ import simplejson
 
 from config import GENERAL_LOG, ORDER_STATUS_NEW, ORDER_STATUS_CANCELED, ORDER_STATUS_FILLED
 from utils import log, mem_get_order, mem_get_raw_orders, mem_add_trade, timestamp_to_datetime_str, \
-    scientific_to_str, datetime_diff, time_now_ms, mem_remove_raw_order
+    datetime_diff, time_now_ms, mem_remove_raw_order
 
 
 def run():
@@ -18,8 +18,8 @@ def run():
                 raw_order = simplejson.loads(raw_order)
 
                 send_time = timestamp_to_datetime_str(int(raw_order['send_time'])).split(' ')[1]
-                amount = f"{scientific_to_str(raw_order['amount'])} {raw_order['token']}"
-                price = f"{scientific_to_str(raw_order['price'])}"
+                amount = f"{raw_order['amount']} {raw_order['token']}"
+                price = raw_order['price']
                 status = raw_order['status']
                 placing_speed = (int(raw_order['recv_time']) - int(raw_order['send_time'])) / 1000
                 creation_time = ""
