@@ -238,3 +238,6 @@ def set_preferences():
     else:
         result = jsonify({'success': 'false', 'error': f'request.data: None'})
     return result
+
+# TODO: websoket api
+#  все что шлет постоянные запросы (аапдейт баланса, таблица, логи, статус бота, супервизор) сделать через вебсокет апи

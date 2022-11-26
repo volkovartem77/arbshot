@@ -177,7 +177,7 @@ class TradingOpt:
             # Update balance
             balance = mem_get_balance()
             balance_usdt = balance['USDT']
-            balance_token = balance[token]
+            balance_token = balance[token] if token in balance else 0
             balance_btc = balance['BTC']
 
             if forward:
