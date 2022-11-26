@@ -58,6 +58,7 @@ supervisorctl status
 supervisorctl start flask_server
 supervisorctl start logger
 supervisorctl start statistic
+supervisorctl start trades
 supervisorctl start streamBinanceSpot
 supervisorctl status
 ```
