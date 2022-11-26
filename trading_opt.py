@@ -105,16 +105,18 @@ class TradingOpt:
         max_amount_token_from_btc = self.amount_to_precision(symbol_1, max_amount_token_from_btc, price_1)
         return min(amount_token, max_amount_token, max_amount_token_from_btc)
 
-    def place_limit_order(self, order_id, symbol, amount, price, side):
+    def place_limit_order(self, symbol, amount, price, side):
         try:
+            order_id = make_client_order_id()
             send_time = time_now_mcs()
             order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC', client_order_id=order_id)
             return order, send_time, time_now_mcs()
         except NoBalanceException:
             return None
 
-    def place_limit_fok_order(self, order_id, symbol, amount, price, side):
+    def place_limit_fok_order(self, symbol, amount, price, side):
         try:
+            order_id = make_client_order_id()
             send_time = time_now_mcs()
             order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK', client_order_id=order_id,
                                           recv_window=self.RecvWindow)
@@ -191,28 +193,25 @@ class TradingOpt:
                 #          f"{balance_token} {token} {balance_btc} BTC", GENERAL_LOG, 'INFO')
 
                 # Order 1: LIMIT (FOK) BUY TOKEN/USDT
-                order_id_1 = make_client_order_id()
-                order_params_1 = (order_id_1, symbol_1, amount_token_buy, price_1, ORDER_SIDE_BUY)
+                order_params_1 = (symbol_1, amount_token_buy, price_1, ORDER_SIDE_BUY)
 
                 # Order 2: LIMIT (GTC) SELL TOKEN/BTC
                 commission_token = round_up(amount_token_buy * fee, 8)
                 amount_recv_token = amount_token_buy - commission_token
                 amount_token_sell = self.amount_to_precision_up(symbol_2, amount_recv_token, price_2, balance_token)
-                order_id_2 = make_client_order_id()
-                order_params_2 = (order_id_2, symbol_2, amount_token_sell, price_2, ORDER_SIDE_SELL)
+                order_params_2 = (symbol_2, amount_token_sell, price_2, ORDER_SIDE_SELL)
 
                 # Order 3: LIMIT (GTC) SELL BTC/USDT
                 amount_recv_btc = amount_token_sell * price_2
                 commission_btc = round_up(amount_recv_btc * fee, 8)
                 amount_recv_btc = amount_recv_btc - commission_btc
                 amount_btc_sell = self.amount_to_precision_btc(symbol_3, amount_recv_btc, price_3, balance_btc)
-                order_id_3 = make_client_order_id()
-                order_params_3 = (order_id_3, symbol_3, amount_btc_sell, price_3, ORDER_SIDE_SELL)
+                order_params_3 = (symbol_3, amount_btc_sell, price_3, ORDER_SIDE_SELL)
 
                 # Placing
                 order_1, order_2 = self.place_orders_async(order_params_1, order_params_2)
                 if order_1:
-                    if order_1['status'] == ORDER_STATUS_FILLED:
+                    if order_1[0]['status'] == ORDER_STATUS_FILLED:
                         amount_spent_usdt = decimal(order_1[0]['cummulativeQuoteQty'])
 
                         if order_2:
