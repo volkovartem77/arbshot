@@ -224,8 +224,8 @@ class TradingOpt:
                                 p_speed_1 = (order_1[2] - order_1[1]) / 1000
                                 p_speed_2 = (order_2[2] - order_2[1]) / 1000
                                 p_speed_3 = (order_3[2] - order_3[1]) / 1000
-                                self.raw_stat(arb, amount_spent_usdt, efficiency, order_1, order_2, order_3, p_speed_1,
-                                              p_speed_2, p_speed_3, amount_token_left, get_spread_speed,
+                                self.raw_stat(arb, amount_spent_usdt, efficiency, order_1[0], order_2[0], order_3[0],
+                                              p_speed_1, p_speed_2, p_speed_3, amount_token_left, get_spread_speed,
                                               calc_spread_speed)
                             else:
                                 self.log(f"ARBITRAGE BROKEN {amount_recv_btc} BTC left", GENERAL_LOG, arb)
