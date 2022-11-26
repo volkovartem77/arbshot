@@ -9,12 +9,16 @@ import pytz as pytz
 import simplejson
 
 from config import LOG_PATH, LOG_SIZE_MB, PRINT_LOG, MEMORY_CACHE, MEMORY_CACHE_LOG, MEM_LOG, MEM_LOG_LENGTH, \
-    MEM_BOT_STATUS, MEM_SETTINGS, STREAM_LOG, MEM_BALANCE, MEM_RAW_STATS, MEM_ORDER, MEM_HISTORY
+    MEM_BOT_STATUS, MEM_SETTINGS, STREAM_LOG, MEM_BALANCE, MEM_RAW_STATS, MEM_ORDER, MEM_HISTORY, MEM_RAW_ORDERS, \
+    MEM_TRADES
 
 
-def set_mem_cache(key, prefix, data):
+def set_mem_cache(key, prefix, data, expire=None):
     try:
-        MEMORY_CACHE.set(f'{key}:{prefix}', simplejson.dumps(data))
+        if expire:
+            MEMORY_CACHE.set(f'{key}:{prefix}', simplejson.dumps(data), expire=expire)
+        else:
+            MEMORY_CACHE.set(f'{key}:{prefix}', simplejson.dumps(data))
     except TypeError:
         log(traceback.format_exc(), MEMORY_CACHE_LOG)
 
@@ -107,9 +111,35 @@ def mem_remove_raw_stats(chain_id):
         mem_set_raw_stats(raw_stats)
 
 
-def mem_set_order(order_id, order: dict):
+def mem_set_raw_orders(raw_orders: dict):
+    prefix = f''.lower()
+    set_mem_cache(MEM_RAW_ORDERS, prefix, raw_orders)
+
+
+def mem_get_raw_orders():
+    prefix = f''.lower()
+    return get_mem_cache(MEM_RAW_ORDERS, prefix)
+
+
+def mem_add_raw_order(order_id, raw_order):
+    raw_orders = mem_get_raw_orders()
+    if raw_orders is None:
+        mem_set_raw_orders({})
+        raw_orders = mem_get_raw_orders()
+    raw_orders.update({order_id: raw_order})
+    mem_set_raw_orders(raw_orders)
+
+
+def mem_remove_raw_order(order_id):
+    raw_orders = mem_get_raw_orders()
+    if raw_orders and order_id in raw_orders:
+        raw_orders.pop(order_id)
+        mem_set_raw_orders(raw_orders)
+
+
+def mem_set_order(order_id, order: dict, expire=None):
     prefix = f'{order_id}'.lower()
-    set_mem_cache(MEM_ORDER, prefix, order)
+    set_mem_cache(MEM_ORDER, prefix, order, expire)
 
 
 def mem_get_order(order_id):
@@ -141,6 +171,25 @@ def mem_add_history(chain_id, history):
     mem_set_history(mem_history)
 
 
+def mem_set_trades(trades: dict):
+    prefix = f''.lower()
+    set_mem_cache(MEM_TRADES, prefix, trades)
+
+
+def mem_get_trades():
+    prefix = f''.lower()
+    return get_mem_cache(MEM_TRADES, prefix)
+
+
+def mem_add_trade(order_id, trade):
+    mem_trades = mem_get_trades()
+    if mem_trades is None:
+        mem_set_trades({})
+        mem_trades = mem_get_trades()
+    mem_trades.update({order_id: trade})
+    mem_set_trades(mem_trades)
+
+
 def datetime_str():
     return datetime.now().replace(microsecond=0).isoformat().replace('T', ' ')
 
@@ -148,6 +197,23 @@ def datetime_str():
 def datetime_str_ms(tz=False):
     now = datetime.now(pytz.timezone('Europe/Paris')) if tz else datetime.now()
     return now.isoformat().replace('T', ' ').split('+')[0]
+
+
+def datetime_diff(timestamp_1, timestamp_2):
+    datetime_1 = datetime.utcfromtimestamp(timestamp_1 / 1000)
+    datetime_2 = datetime.utcfromtimestamp(timestamp_2 / 1000)
+    diff = str(datetime_2 - datetime_1).strip('000')
+    return "0" if diff == ':00:' else diff
+
+
+def timestamp_to_datetime_str(timestamp: int):
+    try:
+        return str(datetime.utcfromtimestamp(timestamp))
+    except ValueError:
+        try:
+            return str(datetime.utcfromtimestamp(timestamp / 1000)).strip('000')
+        except ValueError:
+            return str(datetime.utcfromtimestamp(timestamp / 1000000))
 
 
 def mem_set_log(module, lines: list):
@@ -285,10 +351,6 @@ def quote_to_base(amount, price):
 
 def timestamp_to_date(timestamp):
     return str(datetime.utcfromtimestamp(timestamp))
-
-
-def timestamp_mcs_to_date(timestamp):
-    return str(datetime.utcfromtimestamp(timestamp / 1000000))
 
 
 def scientific_to_str(num):

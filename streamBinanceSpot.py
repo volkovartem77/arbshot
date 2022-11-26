@@ -37,10 +37,15 @@ async def on_message(msg):
                                 'status': status,
                                 'price': msg['p'],
                                 'amount': msg['q'],
-                                'amount_received': amount_received
+                                'amount_received': amount_received,
+                                'creation_time': msg['O'],
+                                'transact_time': msg['T'],
                             }
 
-                            mem_set_order(client_order_id, order)
+                            if status == ORDER_STATUS_NEW:
+                                mem_set_order(client_order_id, order)
+                            else:
+                                mem_set_order(client_order_id, order, expire=60)
 
             # Update balances
             if msg['e'] == 'outboundAccountPosition':

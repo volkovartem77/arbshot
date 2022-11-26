@@ -11,7 +11,7 @@ from exceptions import TimestampError, NoBalanceException
 from models import Params
 from rest.restBinanceSpot import RestBinanceSpot
 from utils import mem_get_balance, quote_to_base, decimal, round_up, round_down, datetime_str_ms, log, \
-    datetime_str, mem_add_raw_stats, make_chain_id, make_client_order_id, time_now_mcs
+    datetime_str, mem_add_raw_stats, make_chain_id, make_client_order_id, time_now_mcs, mem_add_raw_order
 
 
 class TradingOpt:
@@ -36,8 +36,8 @@ class TradingOpt:
             self.NATS.publish(subject=module, payload=payload.encode())
 
     @staticmethod
-    def raw_stat(arb, size_usdt, efficiency, order_1, order_2, order_3, placing_speed_1, placing_speed_2,
-                 placing_speed_3, amount_token_left, get_spread_speed, calc_spread_speed):
+    def raw_stat(arb, size_usdt, efficiency, order_1, order_2, order_3, amount_token_left, get_spread_speed,
+                 calc_spread_speed):
         chain_id = make_chain_id()
         payload = simplejson.dumps({
             'datetime': datetime_str(),
@@ -47,15 +47,29 @@ class TradingOpt:
             'order_1': order_1['clientOrderId'],
             'order_2': order_2['clientOrderId'],
             'order_3': order_3['clientOrderId'],
-            'placing_speed_1': placing_speed_1,
-            'placing_speed_2': placing_speed_2,
-            'placing_speed_3': placing_speed_3,
             'amount_token_left': amount_token_left,
             'get_spread_speed': get_spread_speed,
             'calc_spread_speed': calc_spread_speed,
             'timestamp': time_now_mcs()
         })
         mem_add_raw_stats(chain_id, payload)
+
+    @staticmethod
+    def raw_order(data, arb, token):
+        order = data[0]
+        payload = simplejson.dumps({
+            'send_time': data[1],
+            'arb': arb,
+            'time_in_force': order['timeInForce'],
+            'symbol': order['symbol'],
+            'side': order['side'],
+            'amount': order['origQty'],
+            'token': token,
+            'price': order['price'],
+            'status': order['status'],
+            'recv_time': data[2]
+        })
+        mem_add_raw_order(order['clientOrderId'], payload)
 
     @staticmethod
     def price_to_precision(symbol, price: Decimal):
@@ -107,31 +121,19 @@ class TradingOpt:
 
     def place_limit_order(self, symbol, amount, price, side):
         try:
-            base = symbol.upper().replace('BTC', '') if symbol != 'btcusdt' else 'BTC'
-            self.log(f"Send LIMIT {symbol.upper()} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
             order_id = make_client_order_id()
             send_time = time_now_mcs()
             order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC', client_order_id=order_id)
-            self.log(f"Order {order['clientOrderId'][:14]} {order['type']} {order['symbol']} {order['side']} "
-                     f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
-            self.log(f"Order {order['clientOrderId'][:14]} PlacingSpeed={(time_now_mcs() - send_time) / 1000} ms "
-                     f"TransactTime={order['transactTime']}", GENERAL_LOG, 'INFO')
             return order, send_time, time_now_mcs()
         except NoBalanceException:
             return None
 
     def place_limit_fok_order(self, symbol, amount, price, side):
         try:
-            base = symbol.upper().replace('USDT', '')
-            self.log(f"Send LIMIT {symbol.upper()} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
             order_id = make_client_order_id()
             send_time = time_now_mcs()
             order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK', client_order_id=order_id,
                                           recv_window=self.RecvWindow)
-            self.log(f"Order {order['clientOrderId'][:14]} {order['type']} {order['symbol']} {order['side']} "
-                     f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
-            self.log(f"Order {order['clientOrderId'][:14]} PlacingSpeed={(time_now_mcs() - send_time) / 1000} ms "
-                     f"TransactTime={order['transactTime']}", GENERAL_LOG, 'INFO')
             return order, send_time, time_now_mcs()
         except TimestampError:
             return None
@@ -154,22 +156,25 @@ class TradingOpt:
             # task_gtc_5 = asyncio.create_task(self.place_limit_order_async(*params2))
 
             order_fok = await task_fok
-            order_gtc_1 = await task_gtc_1
-            if order_gtc_1:
-                return order_fok, order_gtc_1
-            order_gtc_2 = await task_gtc_2
-            if order_gtc_2:
-                return order_fok, order_gtc_2
-            order_gtc_3 = await task_gtc_3
-            if order_gtc_3:
-                return order_fok, order_gtc_3
-            # order_gtc_4 = await task_gtc_4
-            # if order_gtc_4:
-            #     return order_fok, order_gtc_4
-            # order_gtc_5 = await task_gtc_5
-            # if order_gtc_5:
-            #     return order_fok, order_gtc_5
-            return order_fok, None
+            if order_fok:
+                order_gtc_1 = await task_gtc_1
+                if order_gtc_1:
+                    return order_fok, order_gtc_1
+                order_gtc_2 = await task_gtc_2
+                if order_gtc_2:
+                    return order_fok, order_gtc_2
+                order_gtc_3 = await task_gtc_3
+                if order_gtc_3:
+                    return order_fok, order_gtc_3
+                # order_gtc_4 = await task_gtc_4
+                # if order_gtc_4:
+                #     return order_fok, order_gtc_4
+                # order_gtc_5 = await task_gtc_5
+                # if order_gtc_5:
+                #     return order_fok, order_gtc_5
+                return order_fok, None
+            else:
+                return None, None
 
         return asyncio.run(place())
 
@@ -224,27 +229,28 @@ class TradingOpt:
                 order_1, order_2 = self.place_orders_async(order_params_1, order_params_2)
                 if order_1:
                     if order_1[0]['status'] == ORDER_STATUS_FILLED:
-                        amount_spent_usdt = decimal(order_1[0]['cummulativeQuoteQty'])
-
                         if order_2:
                             order_3 = self.place_limit_order(*order_params_3)
                             if order_3:
+                                amount_spent_usdt = decimal(order_1[0]['cummulativeQuoteQty'])
                                 self.log(f"ARBITRAGE HOLDING TradeSize {amount_spent_usdt} USDT", GENERAL_LOG, 'INFO')
+                                self.raw_order(order_1, arb, token)
+                                self.raw_order(order_2, arb, token)
+                                self.raw_order(order_3, arb, "BTC")
 
                                 # Statistic
                                 amount_token_left = amount_recv_token - amount_token_sell
-                                p_speed_1 = (order_1[2] - order_1[1]) / 1000
-                                p_speed_2 = (order_2[2] - order_2[1]) / 1000
-                                p_speed_3 = (order_3[2] - order_3[1]) / 1000
                                 self.raw_stat(arb, amount_spent_usdt, efficiency, order_1[0], order_2[0], order_3[0],
-                                              p_speed_1, p_speed_2, p_speed_3, amount_token_left, get_spread_speed,
-                                              calc_spread_speed)
+                                              amount_token_left, get_spread_speed, calc_spread_speed)
                             else:
                                 self.log(f"ARBITRAGE BROKEN {amount_recv_btc} BTC left", GENERAL_LOG, arb)
+                                self.raw_order(order_1, arb, token)
+                                self.raw_order(order_2, arb, token)
                         else:
                             self.log(f"ARBITRAGE BROKEN {amount_recv_token} {token} left", GENERAL_LOG, arb)
+                            self.raw_order(order_1, arb, token)
                     else:
-                        self.log(f"ARBITRAGE CANCELLED", GENERAL_LOG, arb)
+                        self.log(f"ARBITRAGE CANCELLED (EXPIRED)", GENERAL_LOG, arb)
                 else:
                     self.log(f"ARBITRAGE CANCELLED recvWindow={self.RecvWindow}", GENERAL_LOG, arb)
 

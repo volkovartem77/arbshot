@@ -6,7 +6,8 @@ from flask_cors import cross_origin, CORS
 
 from config import GENERAL_LOG, DEFAULT_SETTINGS
 from utils import log, mem_get_settings, mem_set_settings, mem_get_log, mem_set_bot_status, mem_get_bot_status, \
-    mem_get_balance, mem_get_history, mem_set_history, mem_set_raw_stats
+    mem_get_balance, mem_get_history, mem_set_history, mem_set_raw_stats, mem_get_trades, mem_set_raw_orders, \
+    mem_set_trades
 from utils_app import start_bot, stop_bot, get_supervisor_status, format_preferences
 
 # Load default setting to mem
@@ -125,6 +126,48 @@ def clear_history():
             result = jsonify({'history': history})
         else:
             result = jsonify({'history': {}})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
+        result = jsonify({'success': 'false', 'error': f'{e}', 'history': {}})
+    return result
+
+
+@app.route('/get_trades', methods=['GET'])
+@cross_origin()
+def get_trades():
+    """
+    http://127.0.0.1:5000/get_trades
+    """
+    try:
+        trades_dict = mem_get_trades()
+        if trades_dict:
+            trades = [v for k, v in trades_dict.items()]
+            trades = sorted(trades, key=lambda x: int(x['timestamp']), reverse=True)
+            result = jsonify({'trades': trades})
+        else:
+            result = jsonify({'trades': []})
+    except Exception as e:
+        log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
+        result = jsonify({'success': 'false', 'error': f'{e}', 'trades': []})
+    return result
+
+
+@app.route('/clear_trades', methods=['GET'])
+@cross_origin()
+def clear_trades():
+    """
+    http://127.0.0.1:5000/clear_trades
+    """
+    try:
+        mem_set_raw_orders({})
+        mem_set_trades({})
+        trades_dict = mem_get_trades()
+        if trades_dict:
+            trades = [v for k, v in trades_dict.items()]
+            trades = sorted(trades, key=lambda x: int(x['timestamp']), reverse=True)
+            result = jsonify({'trades': trades})
+        else:
+            result = jsonify({'trades': []})
     except Exception as e:
         log(traceback.format_exc(), GENERAL_LOG, 'ERROR')
         result = jsonify({'success': 'false', 'error': f'{e}', 'history': {}})

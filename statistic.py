@@ -1,17 +1,12 @@
+import time
 import traceback
 
 import simplejson
 
 from config import GENERAL_LOG, ORDER_STATUS_NEW, ORDER_STATUS_CANCELED, ORDER_STATUS_FILLED, ORDER_SIDE_SELL
 from rest.restBinanceSpot import RestBinanceSpot
-from utils import log, mem_get_raw_stats, mem_get_order, decimal, mem_remove_raw_stats, mem_rm_order, mem_add_history, \
+from utils import log, mem_get_raw_stats, mem_get_order, decimal, mem_remove_raw_stats, mem_add_history, \
     mem_get_settings
-
-
-def clear_orders(oid1, oid2, oid3):
-    mem_rm_order(oid1)
-    mem_rm_order(oid2)
-    mem_rm_order(oid3)
 
 
 def place_market_sell(rest, symbol, amount):
@@ -49,7 +44,6 @@ def run():
                     elif ORDER_STATUS_CANCELED in statuses:
                         chain_status = 'CANCELED'
                         mem_remove_raw_stats(chain_id)
-                        clear_orders(raw_stat['order_1'], raw_stat['order_2'], raw_stat['order_3'])
                         log(f"order_2['status']={order_2['status']}; order_3['status']={order_3['status']}",
                             'test', 'INFO', to_mem=True)
 
@@ -68,15 +62,15 @@ def run():
                             profit_usdt = profit_usdt - amount_usdt_diff
                             profit_usdt = round(profit_usdt, 4)
 
-                            log(f"amount_btc_received={amount_btc_received}\n"
-                                f"amount_usdt_received_1={amount_usdt_received_1}\n"
-                                f"order_3_price={order_3['price']}\n"
-                                f"amount_usdt_received_2={amount_usdt_received_2}\n"
-                                f"amount_token_left={amount_token_left}\n"
-                                f"order_1_price={order_1['price']}\n"
-                                f"amount_token_left_in_usdt={amount_token_left_in_usdt}\n"
-                                f"profit_usdt={profit_usdt}",
-                                'test', 'TEST')
+                            # log(f"amount_btc_received={amount_btc_received}\n"
+                            #     f"amount_usdt_received_1={amount_usdt_received_1}\n"
+                            #     f"order_3_price={order_3['price']}\n"
+                            #     f"amount_usdt_received_2={amount_usdt_received_2}\n"
+                            #     f"amount_token_left={amount_token_left}\n"
+                            #     f"order_1_price={order_1['price']}\n"
+                            #     f"amount_token_left_in_usdt={amount_token_left_in_usdt}\n"
+                            #     f"profit_usdt={profit_usdt}",
+                            #     'test', 'TEST')
                     else:
                         chain_status = 'COMPLETED'
                         amount_token_left = decimal(raw_stat['amount_token_left'])
@@ -85,7 +79,6 @@ def run():
                         profit_usdt = profit_usdt - amount_token_left_in_usdt
                         profit_usdt = round(profit_usdt, 4)
                         mem_remove_raw_stats(chain_id)
-                        clear_orders(raw_stat['order_1'], raw_stat['order_2'], raw_stat['order_3'])
 
                     mem_add_history(chain_id, {
                         'datetime': raw_stat['datetime'],
@@ -98,6 +91,7 @@ def run():
                         'amount_token_left_in_usdt': amount_token_left_in_usdt,
                         'timestamp': timestamp
                     })
+        time.sleep(0.5)
 
 
 if __name__ == '__main__':

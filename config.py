@@ -51,6 +51,8 @@ MEM_ORDER = 'order'
 MEM_BOT_STATUS = 'bot_status'
 MEM_RAW_STATS = 'raw_stats'
 MEM_HISTORY = 'history'
+MEM_RAW_ORDERS = 'raw_orders'
+MEM_TRADES = 'trades'
 MEM_LOG = 'log'
 
 SYMBOLS = [s['symbol'] for s in get_symbols()['symbols']]
