@@ -124,13 +124,13 @@ class TradingOpt:
         except TimestampError:
             return None
 
-    async def place_limit_order_async(self, order_id, symbol, amount, price, side):
+    async def place_limit_order_async(self, symbol, amount, price, side):
         loop = asyncio.get_event_loop()
-        return await loop.run_in_executor(None, self.place_limit_order, order_id, symbol, amount, price, side)
+        return await loop.run_in_executor(None, self.place_limit_order, symbol, amount, price, side)
 
-    async def place_limit_fok_order_async(self, symbol, amount, price, side, base):
+    async def place_limit_fok_order_async(self, symbol, amount, price, side):
         loop = asyncio.get_event_loop()
-        return await loop.run_in_executor(None, self.place_limit_fok_order, symbol, amount, price, side, base)
+        return await loop.run_in_executor(None, self.place_limit_fok_order, symbol, amount, price, side)
 
     def place_orders_async(self, params1, params2):
         async def place():
