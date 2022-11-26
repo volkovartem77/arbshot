@@ -107,19 +107,31 @@ class TradingOpt:
 
     def place_limit_order(self, symbol, amount, price, side):
         try:
+            base = symbol.upper().replace('BTC', '') if symbol != 'btcusdt' else 'BTC'
+            self.log(f"Send LIMIT {symbol.upper()} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
             order_id = make_client_order_id()
             send_time = time_now_mcs()
             order = self.rest.place_limit(symbol, amount, price, side, time_in_force='GTC', client_order_id=order_id)
+            self.log(f"Order {order['clientOrderId'][:14]} {order['type']} {order['symbol']} {order['side']} "
+                     f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
+            self.log(f"Order {order['clientOrderId'][:14]} PlacingSpeed={(time_now_mcs() - send_time) / 1000} ms "
+                     f"TransactTime={order['transactTime']}", GENERAL_LOG, 'INFO')
             return order, send_time, time_now_mcs()
         except NoBalanceException:
             return None
 
     def place_limit_fok_order(self, symbol, amount, price, side):
         try:
+            base = symbol.upper().replace('USDT', '')
+            self.log(f"Send LIMIT {symbol.upper()} {side} {amount} {base} @{price}", GENERAL_LOG, 'INFO')
             order_id = make_client_order_id()
             send_time = time_now_mcs()
             order = self.rest.place_limit(symbol, amount, price, side, time_in_force='FOK', client_order_id=order_id,
                                           recv_window=self.RecvWindow)
+            self.log(f"Order {order['clientOrderId'][:14]} {order['type']} {order['symbol']} {order['side']} "
+                     f"{order['origQty']} {base} @{order['price']} {order['status']}", GENERAL_LOG, 'INFO')
+            self.log(f"Order {order['clientOrderId'][:14]} PlacingSpeed={(time_now_mcs() - send_time) / 1000} ms "
+                     f"TransactTime={order['transactTime']}", GENERAL_LOG, 'INFO')
             return order, send_time, time_now_mcs()
         except TimestampError:
             return None
