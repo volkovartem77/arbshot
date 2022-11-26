@@ -4,7 +4,7 @@ import traceback
 import simplejson
 
 from config import GENERAL_LOG, ORDER_STATUS_NEW, ORDER_STATUS_CANCELED, ORDER_STATUS_FILLED
-from utils import log, decimal, mem_get_order, mem_get_raw_orders, mem_add_trade, timestamp_to_datetime_str, \
+from utils import log, mem_get_order, mem_get_raw_orders, mem_add_trade, timestamp_to_datetime_str, \
     scientific_to_str, datetime_diff, time_now_ms, mem_remove_raw_order
 
 
