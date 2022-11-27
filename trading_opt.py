@@ -37,12 +37,15 @@ class TradingOpt:
 
     def log_orderbook(self, arb, symbol_1, symbol_2, symbol_3, spread, get_spread_speed, calc_spread_speed):
         time.sleep(0.01)
-        self.log(f"orderbook\n"
-                 f"{symbol_1}: {spread[symbol_1].decode()}\n"
-                 f"{symbol_2}: {spread[symbol_2].decode()}\n"
-                 f"{symbol_3}: {spread[symbol_3].decode()}\n"
-                 f"GetSpreadSpeed={get_spread_speed} CalcSpreadSpeed={calc_spread_speed}",
-                 GENERAL_LOG, arb)
+        self.log(f"orderbook", GENERAL_LOG, arb)
+        time.sleep(0.01)
+        self.log(f"{symbol_1}: {spread[symbol_1].decode()}", GENERAL_LOG, arb)
+        time.sleep(0.01)
+        self.log(f"{symbol_2}: {spread[symbol_2].decode()}", GENERAL_LOG, arb)
+        time.sleep(0.01)
+        self.log(f"{symbol_3}: {spread[symbol_3].decode()}", GENERAL_LOG, arb)
+        time.sleep(0.01)
+        self.log(f"GetSpreadSpeed={get_spread_speed} CalcSpreadSpeed={calc_spread_speed}", GENERAL_LOG, arb)
 
     @staticmethod
     def raw_stat(arb, size_usdt, efficiency, order_1, order_2, order_3, amount_token_left, get_spread_speed,
