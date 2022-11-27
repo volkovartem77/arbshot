@@ -35,6 +35,15 @@ class TradingOpt:
             self.NATS.connect()
             self.NATS.publish(subject=module, payload=payload.encode())
 
+    def log_orderbook(self, arb, symbol_1, symbol_2, symbol_3, spread, get_spread_speed, calc_spread_speed):
+        time.sleep(0.01)
+        self.log(f"orderbook\n"
+                 f"{symbol_1}: {spread[symbol_1].decode()}\n"
+                 f"{symbol_2}: {spread[symbol_2].decode()}\n"
+                 f"{symbol_3}: {spread[symbol_3].decode()}\n"
+                 f"GetSpreadSpeed={get_spread_speed} CalcSpreadSpeed={calc_spread_speed}",
+                 GENERAL_LOG, arb)
+
     @staticmethod
     def raw_stat(arb, size_usdt, efficiency, order_1, order_2, order_3, amount_token_left, get_spread_speed,
                  calc_spread_speed):
@@ -178,7 +187,7 @@ class TradingOpt:
 
         return asyncio.run(place())
 
-    def execute(self, chain, get_spread_speed, calc_spread_speed):
+    def execute(self, chain, spread, get_spread_speed, calc_spread_speed):
         try:
             arb = chain[0]
             forward = chain[1]
@@ -246,6 +255,10 @@ class TradingOpt:
                                 amount_token_left = amount_recv_token - amount_token_sell
                                 self.raw_stat(arb, amount_spent_usdt, efficiency, order_1[0], order_2[0], order_3[0],
                                               amount_token_left, get_spread_speed, calc_spread_speed)
+
+                                # Log Spread
+                                self.log_orderbook(arb, symbol_1, symbol_2, symbol_3, spread, get_spread_speed,
+                                                   calc_spread_speed)
                             else:
                                 self.log(f"ARBITRAGE BROKEN {amount_recv_btc} BTC left", GENERAL_LOG, arb)
                                 self.raw_order(order_1, arb, token)
@@ -255,6 +268,10 @@ class TradingOpt:
                             self.raw_order(order_1, arb, token)
                     else:
                         self.log(f"ARBITRAGE CANCELLED (EXPIRED)", GENERAL_LOG, arb)
+
+                        # Log Spread
+                        self.log_orderbook(arb, symbol_1, symbol_2, symbol_3, spread, get_spread_speed,
+                                           calc_spread_speed)
                 else:
                     self.log(f"ARBITRAGE CANCELLED recvWindow={self.RecvWindow}", GENERAL_LOG, arb)
 

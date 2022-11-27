@@ -211,7 +211,7 @@ def timestamp_to_datetime_str(timestamp: int):
         return str(datetime.utcfromtimestamp(timestamp))
     except ValueError:
         try:
-            return str(datetime.utcfromtimestamp(timestamp / 1000)).strip('000')
+            return str(datetime.utcfromtimestamp(timestamp / 1000))[:-3]
         except ValueError:
             return str(datetime.utcfromtimestamp(timestamp / 1000000))
 
