@@ -229,6 +229,10 @@ class TradingOpt:
                 order_1, order_2 = self.place_orders_async(order_params_1, order_params_2)
                 if order_1:
                     if order_1[0]['status'] == ORDER_STATUS_FILLED:
+                        if order_2 is None:
+                            self.log(f"ARBITRAGE DELAYED retry", GENERAL_LOG, arb)
+                            order_2 = self.place_limit_order(*order_params_2)
+
                         if order_2:
                             order_3 = self.place_limit_order(*order_params_3)
                             if order_3:

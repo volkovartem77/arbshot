@@ -202,8 +202,8 @@ def datetime_str_ms(tz=False):
 def datetime_diff(timestamp_1, timestamp_2):
     datetime_1 = datetime.utcfromtimestamp(timestamp_1 / 1000)
     datetime_2 = datetime.utcfromtimestamp(timestamp_2 / 1000)
-    diff = str(datetime_2 - datetime_1).strip('000')
-    return "0" if diff == ':00:' else diff
+    diff = str(datetime_2 - datetime_1)
+    return diff[:-3] if '.' in diff else diff
 
 
 def timestamp_to_datetime_str(timestamp: int):
