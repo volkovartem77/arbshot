@@ -5,7 +5,7 @@ from calculation import Calculation
 from config import GENERAL_LOG, SYMBOLS_LOWER
 from models import Params
 from trading_opt import TradingOpt
-from utils import mem_get_spread, time_diff_ms, mem_get_settings, mem_set_log, log
+from utils import mem_get_spread, time_diff_ms, mem_get_settings, mem_set_log, log, time_now_mcs
 from utils_arb import create_structure
 
 
@@ -43,7 +43,7 @@ class Monitoring(Calculation, TradingOpt):
             if best:
                 self.log(f"NEW ARBITRAGE {'{:.4f}'.format(best[2])}%", GENERAL_LOG, best[0])
                 if self.Params.Trading:
-                    self.execute(best, spread, self.GetSpreadSpeed, self.CalcSpreadSpeed)
+                    self.execute(best, spread, self.GetSpreadSpeed, self.CalcSpreadSpeed, time_now_mcs())
 
 
 if __name__ == '__main__':
